@@ -7,28 +7,10 @@ Active Pay is One-stop platform design using ReactjS for paying your credit card
 Technologies Used : React, NodeJS, Mongo, HTML/CSS , Sass, Javascript
 
 Team Members
-1. Anurag
-2. Sneha
-3. Jahnavi
-4. Madhura
-
-Steps to set up Project Locally:
-
-git clone url
-Install all dependencies locally - cmd : npm install
-Convert styles from scss to css - cms : sass Styles/index.scss dist/index.css
-add live server extension in your ide to run project
-Steps to push changes to Global branch
-
-check changes with help of ide.
-git add . ( to add changes in your local branch)
-git commit -m "give approriate msg" ( cmd to stage changes)
-git push origin main ( cmd to push changes to global branch)
-Description: To do list helps you to track status of daily activites.
-
-Refer Below URL for Domain model:
-
-![domain_model](https://user-images.githubusercontent.com/112993464/199588030-33d55de9-73c2-47d8-aca4-431f4aa69350.jpg)
+1. Anurag Nandre
+2. Sneha Govindarajan
+3. Jahnavi Gangarapu
+4. Madhura Kurhadkar
 
 Functionalities/Features: 
 User Requirements:
@@ -86,6 +68,26 @@ d.	Navigate to payment history page when user clicks view history
 7.	Payment History
 a.	Display all successful transactions
 b.	Incorporate filter, search feature
+
+
+Refer Below URL for Domain model:
+
+![domain_model](https://user-images.githubusercontent.com/112993464/199588030-33d55de9-73c2-47d8-aca4-431f4aa69350.jpg)
+
+Steps to set up Project Locally:
+
+git clone url
+Install all dependencies locally - cmd : npm install
+Convert styles from scss to css - cms : sass Styles/index.scss dist/index.css
+add live server extension in your ide to run project
+Steps to push changes to Global branch
+
+check changes with help of ide.
+git add . ( to add changes in your local branch)
+git commit -m "give approriate msg" ( cmd to stage changes)
+git push origin main ( cmd to push changes to global branch)
+Description: To do list helps you to track status of daily activites.
+
 
 
 
