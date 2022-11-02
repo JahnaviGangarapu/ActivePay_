@@ -85,7 +85,6 @@ check changes with help of ide.
 git add . ( to add changes in your local branch)
 git commit -m "give approriate msg" ( cmd to stage changes)
 git push origin main ( cmd to push changes to global branch)
-Description: To do list helps you to track status of daily activites.
 
 
 
