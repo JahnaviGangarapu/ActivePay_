@@ -28,6 +28,7 @@ Description: To do list helps you to track status of daily activites.
 
 Refer Below URL for Domain model:
 
+![domain_model](https://user-images.githubusercontent.com/112993464/199588030-33d55de9-73c2-47d8-aca4-431f4aa69350.jpg)
 
 Functionalities/Features: 
 User Requirements:
