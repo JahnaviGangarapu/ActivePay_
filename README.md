@@ -1,5 +1,9 @@
 Project Name : Active Pay
 
+Project Description:
+
+Active Pay is One-stop platform design using ReactjS for paying your credit card bills, providing them with exclusive offers and access to premium experiences.This project also helps you to update your personal information , add cards and fetch Payment history using MongoDb database.
+
 Technologies Used : React, NodeJS, Mongo, HTML/CSS , Sass, Javascript
 
 Team Members
@@ -22,14 +26,11 @@ git commit -m "give approriate msg" ( cmd to stage changes)
 git push origin main ( cmd to push changes to global branch)
 Description: To do list helps you to track status of daily activites.
 
-Project Description:
-
-Active Pay is One-stop platform for paying your credit card bills, providing them with exclusive offers and access to premium experiences.
-
 Refer Below URL for Domain model:
 
 
 Functionalities/Features: 
+User Requirements:
 
 1.	Login / Sign up
 
