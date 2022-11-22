@@ -117,4 +117,141 @@ module.exports = {
         // console.log(data)
         res.send(data);
     },
+    getCardById: async(req, res) => {
+         console.log(req.params.card_id)
+         console.log(encrypt(req.params.card_id))
+        const cardInfo=await Card.findOne({
+            _id:(req.params.card_id)
+        })
+        
+        if(cardInfo){
+            let modified_cardInfo={
+                id: cardInfo._id.toString(),
+                cardOwnerName: cardInfo.cardOwnerName,
+                cardNumber: decrypt(cardInfo.cardNumber),
+                expiryMonth: cardInfo.expiryMonth,
+                expiryYear: cardInfo.expiryYear,
+                outstandingAmount: cardInfo.outstandingAmount.toString(),
+            }
+            res.status(200).send(modified_cardInfo)
+        }
+        // finding all the profile associated with that card
+        // const profileAssociated = await Profile.findAll({
+        //         CardId: req.params.card_id,
+            
+        // });
+
+        // for(const profile of profileAssociated) {
+        //     const profileUser = await db.Profile.findOne({ 
+        //         where: { 
+        //             id: profile.ProfileId
+        //         },
+        //         attributes: ['UserId']
+        //     });
+        //     if(profileUser.UserId === req.user.id) {
+        //         const card = await db.Card.findOne({
+        //             where: {
+        //                 id: req.params.card_id,
+        //             },
+        //         }).catch((err) => {
+        //             res.statusCode = 500;
+        //             throw new Error(err);
+        //         })
+        //         const originalCardNumber = bcrypt(card.cardNumber);
+        //         const outstandingAmount = await calculateOutstandingAmount(card.id);
+        //         const cardInfo = {
+        //             cardOwnerName: card.cardOwnerName,
+        //             cardNumber: originalCardNumber,
+        //             expiryMonth: card.expiryMonth,
+        //             expiryYear: card.expiryYear,
+        //             outstandingAmount: outstandingAmount,
+        //         }
+        //         res.status(200).send(cardInfo); 
+        //         return;
+        //     }
+        // }
+        res.statusCode = 404;
+        throw new Error('Wrong card id or you\'re not authorised !');
+    },
+    getAllstatements: async(req, res) => {
+        // getting the profile associated with the current loggedIn user
+        let data=[
+            {
+                "transactionId": "03757f2e-d0c2-4618-8a3e-09d361b607ac",
+                "amount": "4700.00",
+                "vendor": "1MG",
+                "credDeb": false,
+                "category": "PHARMACY",
+                "transactionDateTime": "2021-04-02T00:00:00.000Z",
+                "userAssociated": "nandre.1998@gmai.com"
+            },
+            {
+                "transactionId": "08c78dad-8488-42e2-8b10-ba3de2ed143a",
+                "amount": "2300.00",
+                "vendor": "AMAZON",
+                "credDeb": false,
+                "category": "SHOPPING",
+                "transactionDateTime": "2021-04-02T00:00:00.000Z",
+                "userAssociated": "nandre.1998@gmai.com"
+            }]
+        res.status(200).send(data)
+        // const profileAssociated = await db.Profile.findOne({
+        //     where: {
+        //         UserId: req.user.id
+        //     }
+        // }).catch((err) => {
+        //     res.statusCode = 500;
+        //     throw new Error(err);
+        // })
+
+        // const allProfileCardIds = await db.Profile_Card.findAll({
+        //     where: {
+        //         ProfileId: profileAssociated.id
+        //     },
+        //     attributes: ['CardId'] // getting all the cardIds associated with the current loggedIn user profile
+        // }).catch((err) => {
+        //     res.statusCode = 500;
+        //     throw new Error(err);
+        // })
+
+        // // we will now check for every card associated with current LoggedIn user,
+        // for(const profileCardId of allProfileCardIds) {
+        //     const currentCard = await db.Card.findOne({
+        //         where: {
+        //             id: profileCardId.CardId,
+        //         },
+        //         attributes: ['cardNumber']
+        //     }).catch((err) => {
+        //         res.statusCode(500);
+        //         throw new Error(err);
+        //     })
+
+        //     const currentCardNumber = bcrypt(currentCard.cardNumber);
+
+        //     // if we get the same card number associated with the currentLoggedIn user.
+        //     if(currentCardNumber === req.params.id) {
+        //         const statements = await db.Transaction.findAll({
+        //             where: {
+        //                 CardId: profileCardId.CardId,
+        //             },
+        //             attributes: ['transactionId', 'amount', 'vendor', 'credDeb', 'category', 'transactionDateTime', 'userAssociated']
+        //         })  
+        //         .catch((err) => {
+        //             res.statusCode = 500;
+        //             throw new Error(err);
+        //         })
+        //         statements.sort(function(a, b) {
+        //             if(a.transactionDateTime > b.transactionDateTime)
+        //                 return 1;
+        //             if(a.transactionDateTime < b.transactionDateTime)
+        //                 return -1;
+        //             return 0;
+        //         });
+        //         res.status(200).send(statements);
+        //         return;
+        //     }
+        // }
+        // res.statusCode = 404;
+        // throw new Error('Card not found');
+    },
 }

@@ -19,22 +19,23 @@ const verifyToken = async (req, res, next) => {
     let decodedToken;
     let user
     try {
+        
         decodedToken = jwt.verify(token, 'supersecretsuper');
-        // console.log(decodedToken)
+        if (!decodedToken) {
+            const error = new Error('Not authenticated.');
+            error.statusCode = 401;
+            throw error;
+        }
         const user = await User.findById(decodedToken.sub);
+        
         // console.log(user)
         req.user = user
         // console.log(user)
-    next();
+        next();
         // console.log(decodedToken)
     } catch (err) {
-        err.statusCode = 500;
-        throw err;
-    }
-    if (!decodedToken) {
-        const error = new Error('Not authenticated.');
-        error.statusCode = 401;
-        throw error;
+        // err.statusCode = 500;
+        return res.status(401).json({ message: "Unauthorized" });
     }
     // req.userId = decodedToken.userId;
     

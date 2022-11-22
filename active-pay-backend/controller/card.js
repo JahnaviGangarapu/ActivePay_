@@ -12,5 +12,9 @@ module.exports = {
     getCardById: async(req, res, next) => {
         cardService.getCardById(req, res)
             .catch(next);
+    },
+    getAllStatements: async(req, res, next) => {
+        cardService.getAllstatements(req, res)
+            .catch(next);
     }
 };
