@@ -28,5 +28,9 @@ module.exports = {
     getStatementsYearMonth: async(req, res, next) => {
         cardService.getStatementsYearMonth(req, res)
             .catch(next);
+    },
+    getSmartStatementYearMonth: async(req, res, next) => {
+        cardService.getSmartStatementYearMonth(req, res)
+            .catch(next);
     }
 };

@@ -14,4 +14,5 @@ router.get('/:id/statements', verifyToken, cardController.getAllStatements);
 router.post('/:id/pay', verifyToken, cardController.payBill);
 router.post('/:id/createStatements', verifyToken, cardController.postStatements); // to create test data
 router.get('/:id/statements/:year/:month', verifyToken, cardController.getStatementsYearMonth);
+router.get('/:id/smartStatement/:year/:month', verifyToken, cardController.getSmartStatementYearMonth);
 module.exports = router;
