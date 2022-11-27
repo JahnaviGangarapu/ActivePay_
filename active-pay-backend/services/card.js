@@ -1,7 +1,8 @@
 const Card = require('../model/card.js')
 var crypto = require('crypto');
 const Profile = require('../model/profile.js')
-
+const Transaction = require('../model/transaction.js');
+const { json } = require('body-parser');
 const cypherKey = "mySecretKey";
 
 function encrypt(text) {
@@ -16,6 +17,21 @@ function decrypt(text) {
     var dec = decipher.update(text, 'hex', 'utf8')
     dec += decipher.final('utf8');
     return dec; //myPlainText
+}
+const updateCoins = (initialCoins, amount) => {
+    const today = new Date();
+    const currentMonth = parseInt(today.getMonth());
+    const currentYear = parseInt(today.getYear());
+    const numberOfDays = daysInMonth(currentMonth, currentYear);
+    const todayDate = parseInt(today.getDate());
+
+    const daysRemaining = numberOfDays - todayDate;
+    const slope = (0.05 / numberOfDays);
+    const fraction = slope * daysRemaining;
+    const coinsEarned = parseInt(fraction * parseInt(amount));
+    const finalCoins = parseInt(initialCoins) + coinsEarned;
+    // console.log(currentYear, currentMonth, numberOfDays, todayDate, daysRemaining, slope, fraction, coinsEarned, finalCoins);
+    return finalCoins;
 }
 module.exports = {
     addCard: async (req, res) => {
@@ -36,7 +52,7 @@ module.exports = {
                 // await bcrypt.compare(card.cardNumber, req.body.cardNumber)
                 // if we found the same cardNumber
                 // console.log(decrypt(card.cardNumber)+"   "+req.body.cardNumber)
-                if (req.body.cardNumber===decrypt(card.cardNumber)) {
+                if (req.body.cardNumber === decrypt(card.cardNumber)) {
                     for (const profile of card.profile) {
 
                         // if the found card is added by the same user
@@ -84,7 +100,7 @@ module.exports = {
             // err.statusCode=500
             throw new Error(err)
         }
-        
+
     },
     getAllCards: async (req, res) => {
 
@@ -99,11 +115,10 @@ module.exports = {
         // let data = [{"id":"1adbeaaf-700a-4410-89ac-e72cf8dda280","cardOwnerName":"ABHISHEK RANJAN","cardNumber":"4242424242424242","expiryMonth":7,"expiryYear":2026,"outstandingAmount":38},{"id":"6e837d5d-130a-4971-9568-41035ee81ae9","cardOwnerName":"TEMP USER","cardNumber":"2720999448373736","expiryMonth":5,"expiryYear":2027,"outstandingAmount":11547},{"id":"c1ef0fa8-205a-4c3a-91b9-f2d860ce412d","cardOwnerName":"RAHUL","cardNumber":"378282246310005","expiryMonth":11,"expiryYear":2027,"outstandingAmount":0},{"id":"c4a1d5c2-d0d7-48c9-b516-954ca628b9f2","cardOwnerName":"ABHI","cardNumber":"6010601060106010","expiryMonth":1,"expiryYear":2021,"outstandingAmount":0}]
         let data = []
         for (const card of userCards[0].card) {
-            // let outstandingAmount = await calculateOutstandingAmount(card.id);
-            let outstandingAmount = 0
+
+            // let outstandingAmount = 0
             let card_filtered = await Card.findById(card)
-            // console.log(card_filtered)
-            // let originalCardNumber = await bcrypt.hash(card.cardNumber,10)
+            // let outstandingAmount = await calculateOutstandingAmount(card.cardNumber);
             let cardInfo = {
                 id: card_filtered._id.toString(),
                 cardOwnerName: card_filtered.cardOwnerName,
@@ -117,141 +132,274 @@ module.exports = {
         // console.log(data)
         res.send(data);
     },
-    getCardById: async(req, res) => {
-         console.log(req.params.card_id)
-         console.log(encrypt(req.params.card_id))
-        const cardInfo=await Card.findOne({
-            _id:(req.params.card_id)
-        })
-        
-        if(cardInfo){
-            let modified_cardInfo={
-                id: cardInfo._id.toString(),
-                cardOwnerName: cardInfo.cardOwnerName,
-                cardNumber: decrypt(cardInfo.cardNumber),
-                expiryMonth: cardInfo.expiryMonth,
-                expiryYear: cardInfo.expiryYear,
-                outstandingAmount: cardInfo.outstandingAmount.toString(),
+    getCardById: async (req, res) => {
+        try {
+            const cardInfo = await Card.findOne({
+                _id: (req.params.card_id)
+            }).catch((err) => {
+                err.statusCode = 404;
+                throw new Error('Wrong card id or you\'re not authorised !');
+            })
+            if (cardInfo) {
+                let modified_cardInfo = {
+                    id: cardInfo._id.toString(),
+                    cardOwnerName: cardInfo.cardOwnerName,
+                    cardNumber: decrypt(cardInfo.cardNumber),
+                    expiryMonth: cardInfo.expiryMonth,
+                    expiryYear: cardInfo.expiryYear,
+                    outstandingAmount: cardInfo.outstandingAmount.toString(),
+                }
+                res.status(200).send(modified_cardInfo)
             }
-            res.status(200).send(modified_cardInfo)
+        } catch (err) {
+            if (!err.statusCode)
+                err.statusCode = 500
+            throw new Error(err)
         }
-        // finding all the profile associated with that card
-        // const profileAssociated = await Profile.findAll({
-        //         CardId: req.params.card_id,
-            
-        // });
 
-        // for(const profile of profileAssociated) {
-        //     const profileUser = await db.Profile.findOne({ 
-        //         where: { 
-        //             id: profile.ProfileId
-        //         },
-        //         attributes: ['UserId']
-        //     });
-        //     if(profileUser.UserId === req.user.id) {
-        //         const card = await db.Card.findOne({
-        //             where: {
-        //                 id: req.params.card_id,
-        //             },
-        //         }).catch((err) => {
-        //             res.statusCode = 500;
-        //             throw new Error(err);
-        //         })
-        //         const originalCardNumber = bcrypt(card.cardNumber);
-        //         const outstandingAmount = await calculateOutstandingAmount(card.id);
-        //         const cardInfo = {
-        //             cardOwnerName: card.cardOwnerName,
-        //             cardNumber: originalCardNumber,
-        //             expiryMonth: card.expiryMonth,
-        //             expiryYear: card.expiryYear,
-        //             outstandingAmount: outstandingAmount,
-        //         }
-        //         res.status(200).send(cardInfo); 
-        //         return;
-        //     }
-        // }
-        res.statusCode = 404;
-        throw new Error('Wrong card id or you\'re not authorised !');
     },
-    getAllstatements: async(req, res) => {
+    getAllstatements: async (req, res) => {
         // getting the profile associated with the current loggedIn user
-        let data=[
-            {
-                "transactionId": "03757f2e-d0c2-4618-8a3e-09d361b607ac",
-                "amount": "4700.00",
-                "vendor": "1MG",
-                "credDeb": false,
-                "category": "PHARMACY",
-                "transactionDateTime": "2021-04-02T00:00:00.000Z",
-                "userAssociated": "nandre.1998@gmai.com"
-            },
-            {
-                "transactionId": "08c78dad-8488-42e2-8b10-ba3de2ed143a",
-                "amount": "2300.00",
-                "vendor": "AMAZON",
-                "credDeb": false,
-                "category": "SHOPPING",
-                "transactionDateTime": "2021-04-02T00:00:00.000Z",
-                "userAssociated": "nandre.1998@gmai.com"
-            }]
-        res.status(200).send(data)
-        // const profileAssociated = await db.Profile.findOne({
-        //     where: {
-        //         UserId: req.user.id
-        //     }
-        // }).catch((err) => {
-        //     res.statusCode = 500;
-        //     throw new Error(err);
-        // })
+        try {
+            const profileAssociated = await Profile.findById({
+                _id: req.user.id
+            }).catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+            const cardsAssociated = profileAssociated.card
+            let statementsPojo = []
+            for (const profileCardId of cardsAssociated) {
+                const currentCard = await Card.findOne({
+                    _id: profileCardId,
+                }).catch((err) => {
+                    res.statusCode(500);
+                    throw new Error(err);
+                })
+                const currentCardNumber = decrypt(currentCard.cardNumber);
+                // if we get the same card number associated with the currentLoggedIn user.
+                if (currentCardNumber === req.params.id) {
+                    const statements = await Transaction.find({
+                        cardNumber: currentCardNumber,
+                    }
+                    ).catch((err) => {
+                        res.statusCode = 500;
+                        throw new Error(err);
+                    })
+                    statements.sort(function (a, b) {
+                        if (a.transactionDateTime > b.transactionDateTime)
+                            return 1;
+                        if (a.transactionDateTime < b.transactionDateTime)
+                            return -1;
+                        return 0;
+                    });
+                    statementsPojo = statements.map(s => ({
+                        transactionId: s._id,
+                        amount: s.amount.toString(),
+                        vendor: s.vendor,
+                        credDeb: s.credDeb,
+                        category: s.category,
+                        transactionDateTime: s.transactionDateTime,
+                        userAssociated: s.userAssociated
 
-        // const allProfileCardIds = await db.Profile_Card.findAll({
-        //     where: {
-        //         ProfileId: profileAssociated.id
-        //     },
-        //     attributes: ['CardId'] // getting all the cardIds associated with the current loggedIn user profile
-        // }).catch((err) => {
-        //     res.statusCode = 500;
-        //     throw new Error(err);
-        // })
-
-        // // we will now check for every card associated with current LoggedIn user,
-        // for(const profileCardId of allProfileCardIds) {
-        //     const currentCard = await db.Card.findOne({
-        //         where: {
-        //             id: profileCardId.CardId,
-        //         },
-        //         attributes: ['cardNumber']
-        //     }).catch((err) => {
-        //         res.statusCode(500);
-        //         throw new Error(err);
-        //     })
-
-        //     const currentCardNumber = bcrypt(currentCard.cardNumber);
-
-        //     // if we get the same card number associated with the currentLoggedIn user.
-        //     if(currentCardNumber === req.params.id) {
-        //         const statements = await db.Transaction.findAll({
-        //             where: {
-        //                 CardId: profileCardId.CardId,
-        //             },
-        //             attributes: ['transactionId', 'amount', 'vendor', 'credDeb', 'category', 'transactionDateTime', 'userAssociated']
-        //         })  
-        //         .catch((err) => {
-        //             res.statusCode = 500;
-        //             throw new Error(err);
-        //         })
-        //         statements.sort(function(a, b) {
-        //             if(a.transactionDateTime > b.transactionDateTime)
-        //                 return 1;
-        //             if(a.transactionDateTime < b.transactionDateTime)
-        //                 return -1;
-        //             return 0;
-        //         });
-        //         res.status(200).send(statements);
-        //         return;
-        //     }
-        // }
-        // res.statusCode = 404;
-        // throw new Error('Card not found');
+                    }))
+                    break
+                }
+            }
+            res.status(200).send(statementsPojo);
+        } catch (err) {
+            if (!err.statusCode)
+                err.statusCode = 500
+            throw new Error(err)
+        }
     },
+    postStatements: async (req, res) => {
+        try {
+            const cardAssociated = await Card.findOne({
+                cardNumber: encrypt(req.params.id)
+            }).catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+            if (!cardAssociated)
+                throw new Error("Not a valid card Number");
+            if (req.body.credDeb && parseFloat(cardAssociated.outstandingAmount) < req.body.amount)
+                throw new Error("Entered Amount is more than Bill Amount");
+            const transaction = new Transaction({
+                "cardNumber": req.params.id,
+                "amount": req.body.amount,
+                "vendor": req.body.vendor,
+                "credDeb": req.body.credDeb,
+                "category": req.body.category,
+                "transactionDateTime": req.body.transactionDateTime,
+                "userAssociated": req.body.userAssociated
+            },
+            )
+            const transaction_saved = await transaction.save().catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+            cardAssociated.transcation = [...cardAssociated.transcation, transaction_saved._id]
+            if (transaction_saved.credDeb) {
+                cardAssociated.outstandingAmount = parseFloat(cardAssociated.outstandingAmount) - parseFloat(transaction_saved.amount);
+            }
+            else cardAssociated.outstandingAmount = parseFloat(cardAssociated.outstandingAmount) + parseFloat(transaction_saved.amount);
+            cardAssociated.save().catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+            res.status(200).send(transaction_saved)
+        }
+        catch (err) {
+            if (!err.statusCode)
+                err.statusCode = 500
+            throw new Error(err)
+        }
+    },
+    payBill: async (req, res) => {
+
+        try {
+            // getting the profile associated with the current loggedIn user
+            const profileAssociated = await Profile.findById({
+                _id: req.user.id
+            }).catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+            //      // yet to implement
+            //     const coinCount = updateCoins(profileAssociated.coins, req.body.amount);
+            const allProfileCardIds = profileAssociated.card
+            let currentTransaction = {};
+            // we will now check for every card associated with current LoggedIn user,
+            for (const profileCardId of allProfileCardIds) {
+                const currentUserCard = await Card.findById({
+                    _id: profileCardId,
+                }
+                ).catch((err) => {
+                    res.statusCode(500);
+                    throw new Error(err);
+                })
+
+                const currentUserCardNumber = decrypt(currentUserCard.cardNumber);
+
+                // if we get the same card number associated with the currentLoggedIn user.
+                if (req.params.id === currentUserCardNumber) {
+
+                    // lets update the rewardsCoin in profile
+
+                    const duplicate = { ...profileAssociated };
+                    // duplicate.coins = coinCount; yet to be implemented
+                    // await profileAssociated.update(duplicate);
+
+                    // now we can simply create the new transaction
+                    const transaction = new Transaction({
+                        amount: req.body.amount,
+                        vendor: 'BILL',
+                        credDeb: true,
+                        category: 'PAYMENT',
+                        cardNumber: currentUserCardNumber,
+                        transactionDateTime: Date.now(),
+                        CardId: profileCardId,
+                        userAssociated: req.user.email,
+                    })
+                    currentTransaction = await transaction.save().catch((err) => {
+                        res.statusCode = 500;
+                        throw new Error(err);
+                    })
+                    currentUserCard.outstandingAmount = parseFloat(currentUserCard.outstandingAmount) - parseFloat(currentTransaction.amount)
+                    currentUserCard.transcation = [...currentUserCard.transcation, currentTransaction._id]
+                    await currentUserCard.save()
+                    break
+                }
+                if (!currentTransaction)
+                    throw new Error("Bill Payment Error")
+                res.status(200).send(currentTransaction);
+            }
+        } catch (err) {
+            if (!err.statusCode)
+                err.statusCode = 500
+            throw new Error(err)
+        }
+    },
+
+    getStatementsYearMonth: async (req, res) => {
+
+        try {
+            // cardNumber, year, month
+            let month = req.params.month;
+            let year = req.params.year;
+
+            const endingDate = new Date(year, month);
+
+            month = parseInt(month) - 1;
+
+            const startingDate = new Date(year, month);
+            // getting the profile associated with the current loggedIn user
+            const profileAssociated = await Profile.findById({
+                _id: req.user.id
+            }).catch((err) => {
+                res.statusCode = 500;
+                throw new Error(err);
+            })
+
+            const allProfileCardIds = profileAssociated.card
+            // we will now check for every card associated with current LoggedIn user,
+            for (const profileCardId of allProfileCardIds) {
+                const currentCard = await Card.findById({
+                    _id: profileCardId
+                }).catch((err) => {
+                    res.statusCode(500);
+                    throw new Error(err);
+                })
+
+                const currentCardNumber = decrypt(currentCard.cardNumber);
+
+                // if we get the same card number associated with the currentLoggedIn user.
+                if (currentCardNumber === req.params.id) {
+                    const statements = await Transaction.find({
+                        CardId: profileCardId.CardId,
+                        transactionDateTime: { // we are now fetching all the statements between the starting and endingDate
+                            $gte: startingDate,
+                            $lte: endingDate,
+                        }
+                    }).catch((err) => {
+                        res.statusCode = 500;
+                        throw new Error(err);
+                    })
+                    statements.sort(function (a, b) {
+                        if (a.transactionDateTime > b.transactionDateTime)
+                            return 1;
+                        if (a.transactionDateTime < b.transactionDateTime)
+                            return -1;
+                        return 0;
+                    });
+                    // Pagination
+                    statements.reverse();
+                    const perPage = 10;
+                    const page = Number(req.query.pageNumber) || 1;
+                    const count = statements.length;
+                    const pages = Math.ceil(count / perPage);
+                    const indexOfLastStatement = page * perPage;
+                    const indexOfFirstStatement = indexOfLastStatement - perPage;
+                    const currentStatements = statements.slice(indexOfFirstStatement, indexOfLastStatement);
+                    const modified_current_statements = currentStatements.map(s => ({
+                        transactionId: s._id,
+                        amount: s.amount.toString(),
+                        vendor: s.vendor,
+                        credDeb: s.credDeb,
+                        category: s.category,
+                        transactionDateTime: s.transactionDateTime,
+                        userAssociated: s.userAssociated
+                    }))
+                    res.status(200).json({ data: modified_current_statements, pages, page });
+                    return;
+                }
+            }
+        }catch (err) {
+            console.log(err)
+            if (!err.statusCode)
+                err.statusCode = 500
+            throw new Error(err)
+        }
+    }
 }

@@ -13,8 +13,20 @@ module.exports = {
         cardService.getCardById(req, res)
             .catch(next);
     },
+    payBill: async(req, res, next) => {
+        cardService.payBill(req, res)
+            .catch(next);
+    },
     getAllStatements: async(req, res, next) => {
         cardService.getAllstatements(req, res)
+            .catch(next);
+    },
+    postStatements: async(req, res, next) => {
+        cardService.postStatements(req, res)
+            .catch(next);
+    },
+    getStatementsYearMonth: async(req, res, next) => {
+        cardService.getStatementsYearMonth(req, res)
             .catch(next);
     }
 };

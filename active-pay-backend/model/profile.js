@@ -11,10 +11,6 @@ const profileSchema = new Schema({
         type: String,
         required: true
     },
-    // authCode: {
-    //     type: String,
-    //     default:''
-    // },
     reminders: {
         type: Boolean,
         required: true,

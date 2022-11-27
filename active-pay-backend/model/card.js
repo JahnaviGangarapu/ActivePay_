@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
-    cardOwnerName: {
+    cardNumber: {
         type: String,
         required: true
     },
-    cardNumber: {
+    cardOwnerName: {
         type: String,
         required: true
     },
@@ -26,6 +26,11 @@ const cardSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Profile',
         required:true
+    }],
+    transcation:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Transcation',
+        // required:true
     }],
     
 },{timestamps:true}
