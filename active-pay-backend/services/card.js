@@ -343,7 +343,6 @@ module.exports = {
             })
 
             const allProfileCardIds = profileAssociated.card
-            console.log(allProfileCardIds)
             // we will now check for every card associated with current LoggedIn user,
             for (const profileCardId of allProfileCardIds) {
                 const currentCard = await Card.findById({
@@ -352,7 +351,6 @@ module.exports = {
                     res.statusCode(500);
                     throw new Error(err);
                 })
-               console.log(currentCard)
                 const currentCardNumber = decrypt(currentCard.cardNumber);
 
                 // if we get the same card number associated with the currentLoggedIn user.
