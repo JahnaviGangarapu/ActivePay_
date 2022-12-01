@@ -351,13 +351,12 @@ module.exports = {
                     res.statusCode(500);
                     throw new Error(err);
                 })
-
                 const currentCardNumber = decrypt(currentCard.cardNumber);
 
                 // if we get the same card number associated with the currentLoggedIn user.
                 if (currentCardNumber === req.params.id) {
                     const statements = await Transaction.find({
-                        CardId: profileCardId.CardId,
+                        cardNumber: currentCardNumber,
                         transactionDateTime: { // we are now fetching all the statements between the starting and endingDate
                             $gte: startingDate,
                             $lte: endingDate,
@@ -436,7 +435,7 @@ module.exports = {
                 // if we get the same card number associated with the currentLoggedIn user.
                 if (currentCardNumber === req.params.id) {
                     const allStatements = await Transaction.find({
-                        CardId: profileCardId.CardId,
+                        cardNumber: currentCardNumber,
                         transactionDateTime: { // we are now fetching all the statements between the starting and endingDate
                             $gte: startingDate,
                             $lte: endingDate,
