@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');  // file read,upload in windows
 // importing routes
 const authRoute = require('./routes/auth.js');
 const cardRoute = require('./routes/card.js');
+const rewardRoute = require('./routes/reward.js')
 // const rewardRoute = require('./routes/reward');
 
 const app = express();
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
 // Routes middlewares
 app.use('/api/user', authRoute);
 app.use('/api/cards', cardRoute);
-// app.use('/api/rewards', rewardRoute);
+app.use('/api/rewards', rewardRoute);
 
 // app.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -40,7 +41,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    'mongodb+srv://anurag_nandre:anuragnandre@cluster0.cgdmlj0.mongodb.net/activepay?retryWrites=true&w=majority'
+    'mongodb://localhost:27017/cred'
   )
   .then(result => {
     app.listen(8082);
