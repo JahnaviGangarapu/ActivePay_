@@ -6,9 +6,9 @@ import {Navbar} from 'react-bootstrap'
 const Header = () => {
   return (
     <header>
-        hi
+        
    
-        </header>
+    </header>
   );
 };
 
