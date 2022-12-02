@@ -9,7 +9,7 @@ const verifyToken = require('../middleware/verifyToken.js');
 // routes
 router.post('/signup', authController.signup);
 router.post('/login',  authController.login);
-router.get('/profile',verifyToken, authController.getProfile);
-router.patch('/profile',verifyToken, authController.editProfile);
+router.get('/profile',verifyToken, authController.getProfile); //http://localhost:8082/api/user/profile
+router.patch('/profile',verifyToken, authController.editProfile); 
 
 module.exports = router;

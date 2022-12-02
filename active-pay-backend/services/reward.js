@@ -13,11 +13,12 @@ function randomValueHex (len) {
 }
 
 module.exports = {
-    getCoinsCount: async(req, res) => {
+    getCoinsCount: async(req, res, next) => {
         // getProfileAssociated
+        const userId = req.user._id;
         const profileAssociated = await Profile.findOne({
             where: {
-                UserId: req.user.id
+                UserId: userId
             },
             attributes: ['coins']
         })
@@ -25,7 +26,8 @@ module.exports = {
             res.statusCode = 500;
             throw new Error(err);
         })
-        res.status(200).json({ coinsCount: profileAssociated.coins });
+        console.log(profileAssociated)
+        res.status(200).json({ coins: profileAssociated.coins });
     },
 
     addRewards: async(req, res) => {
@@ -71,7 +73,7 @@ module.exports = {
                 attributes: ['id']
             });
 
-            const allRewards = await Reward.findAll({
+            const allRewards = await Reward.find({
                 where: {
                     ProfileId: profileAssociated.id
                 },

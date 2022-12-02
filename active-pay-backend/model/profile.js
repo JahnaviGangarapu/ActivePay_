@@ -21,7 +21,7 @@ const profileSchema = new Schema({
         deafult:"999999999"
     },
     coins: {
-        type: Schema.Types.Decimal128,
+        type: Number,
         required: true
     },
     card:[{
