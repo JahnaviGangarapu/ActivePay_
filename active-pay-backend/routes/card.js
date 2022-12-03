@@ -8,8 +8,9 @@ const cardController = require('../controller/card.js');
 // const statementSchema = require('../schemas/statementSchema');
 
 router.post('/',verifyToken, cardController.addCard);
-router.get('/', verifyToken, cardController.getAllCards); 
+router.get('/', verifyToken, cardController.getAllCards);
 router.get('/:card_id', verifyToken, cardController.getCardById);
+router.delete('/:card_id', verifyToken, cardController.deleteCardById); //added by Madhura
 router.get('/:id/statements', verifyToken, cardController.getAllStatements);
 router.post('/:id/pay', verifyToken, cardController.payBill);
 router.post('/:id/createStatements', verifyToken, cardController.postStatements); // to create test data

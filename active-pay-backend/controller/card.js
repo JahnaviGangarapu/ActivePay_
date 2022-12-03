@@ -13,6 +13,10 @@ module.exports = {
         cardService.getCardById(req, res)
             .catch(next);
     },
+    deleteCardById: async(req, res, next) => {    // function added by Madhura
+        cardService.deleteCardById(req, res)
+            .catch(next);
+    },
     payBill: async(req, res, next) => {
         cardService.payBill(req, res)
             .catch(next);
