@@ -10,8 +10,9 @@ import {
   NavLink,
   Modal,
   Button,
+  Form,
 } from "react-bootstrap";
-import QrReader from 'react-qr-scanner';
+import QrReader from "react-qr-scanner";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
@@ -30,6 +31,7 @@ const Header = () => {
   const [toggleCamera, setToggleCamera] = useState(true);
 
   const handleCloseModal = () => {
+    setToggleCamera(!toggleCamera);
     setShowModal(false);
   };
 
@@ -38,19 +40,19 @@ const Header = () => {
   };
   const handleScan = (data) => {
     console.log(data);
-    if(data != null){
-      setToggleCamera(!toggleCamera); 
-     setResult(data.text);
-   }
-  }
+    if (data != null) {
+      setToggleCamera(!toggleCamera);
+      setResult(data.text);
+    }
+  };
 
   const handleError = (err) => {
-    console.error(err)
-  }
+    console.error(err);
+  };
   const previewStyle = {
     height: 240,
     width: 320,
-  }
+  };
 
   // const [coins, setCoins] = useState(135);
   useEffect(() => {
@@ -101,18 +103,20 @@ const Header = () => {
                       <Modal.Title>Scan and Pay</Modal.Title>
                     </Modal.Header>
                     <Modal.Body style={{ paddingBottom: "0" }}>
-                      { toggleCamera &&
-                        <QrReader 
+                      {toggleCamera && (
+                        <QrReader
                           style={previewStyle}
                           onError={handleError}
                           onScan={handleScan}
                         />
-                      }
-                      { !toggleCamera && 
+                      )}
+                      {!toggleCamera && (
                         <div>
-
+                          <h2>$</h2>
+                          <h6>{result}</h6>
+                          <input type="text" placeholder="Enter amount"/>
                         </div>
-                      }
+                      )}
                     </Modal.Body>
                     <Modal.Footer>Pay</Modal.Footer>
                   </Modal>
