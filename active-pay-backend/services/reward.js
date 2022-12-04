@@ -25,7 +25,7 @@ module.exports = {
             res.statusCode = 500;
             throw new Error(err);
         })
-        res.status(200).json({ coinsCount: profileAssociated.coins });
+        res.status(200).json({ coinsCount: profileAssociated.coins.toString() });
     },
 
     addRewards: async(req, res) => {
