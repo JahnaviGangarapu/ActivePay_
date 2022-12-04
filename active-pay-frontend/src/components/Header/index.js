@@ -67,7 +67,6 @@ const Header = () => {
 
   return (
     <header>
-      {console.log(userInfo)}
       <Navbar
         bg="dark"
         variant="dark"

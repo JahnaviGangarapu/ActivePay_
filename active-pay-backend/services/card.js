@@ -4,7 +4,10 @@ const Profile = require('../model/profile.js')
 const Transaction = require('../model/transaction.js');
 const { json } = require('body-parser');
 const cypherKey = "mySecretKey";
-
+const daysInMonth = (month, year) => {
+    const temp =  new Date(year, month + 1, 0);
+    return parseInt(temp.getDate());
+}
 function encrypt(text) {
     var cipher = crypto.createCipher('aes-256-cbc', cypherKey)
     var crypted = cipher.update(text, 'utf8', 'hex')
@@ -30,7 +33,7 @@ const updateCoins = (initialCoins, amount) => {
     const fraction = slope * daysRemaining;
     const coinsEarned = parseInt(fraction * parseInt(amount));
     const finalCoins = parseInt(initialCoins) + coinsEarned;
-    // console.log(currentYear, currentMonth, numberOfDays, todayDate, daysRemaining, slope, fraction, coinsEarned, finalCoins);
+    //console.log(currentYear, currentMonth, numberOfDays, todayDate, daysRemaining, slope, fraction, coinsEarned, finalCoins);
     return finalCoins;
 }
 module.exports = {
@@ -103,7 +106,7 @@ module.exports = {
 
     },
     getAllCards: async (req, res) => {
-
+         console.log(req.user.id)
         // we have to get cards associated with the current user.
         const userCards = await Profile.find({
             _id: req.user.id // getting the profile associated with the currentLoggedIn user
@@ -112,6 +115,7 @@ module.exports = {
             res.statusCode = 500;
             throw new Error(err);
         })
+        console.log(userCards)
         // let data = [{"id":"1adbeaaf-700a-4410-89ac-e72cf8dda280","cardOwnerName":"ABHISHEK RANJAN","cardNumber":"4242424242424242","expiryMonth":7,"expiryYear":2026,"outstandingAmount":38},{"id":"6e837d5d-130a-4971-9568-41035ee81ae9","cardOwnerName":"TEMP USER","cardNumber":"2720999448373736","expiryMonth":5,"expiryYear":2027,"outstandingAmount":11547},{"id":"c1ef0fa8-205a-4c3a-91b9-f2d860ce412d","cardOwnerName":"RAHUL","cardNumber":"378282246310005","expiryMonth":11,"expiryYear":2027,"outstandingAmount":0},{"id":"c4a1d5c2-d0d7-48c9-b516-954ca628b9f2","cardOwnerName":"ABHI","cardNumber":"6010601060106010","expiryMonth":1,"expiryYear":2021,"outstandingAmount":0}]
         let data = []
         for (const card of userCards[0].card) {
@@ -158,6 +162,38 @@ module.exports = {
         }
 
     },
+  deleteCardById: async (req, res) => {       // function added by Madhura Kurhadkar
+    try {
+      const profileAssociated = await Profile.findById({
+          _id: req.user.id
+      }).catch((err) => {
+          res.statusCode = 500;
+          throw new Error(err);
+      })
+      const cardsAssociated = profileAssociated.card
+      for (const profileCardId of cardsAssociated) {
+        if(profileCardId==req.params.card_id){
+               const delete_card=await Card.findByIdAndDelete({
+                 _id:profileCardId
+               }).catch((err)=>{
+                 throw new Error("Error in deleting Card")
+               })
+               profileAssociated.card=profileAssociated.card.filter(i=>i!==profileCardId)
+                await profileAssociated.save().catch((err)=>{
+                 throw new Error("Error in deleting Card from Profile")
+               })
+               break
+           }
+          }
+          res.status(200).send({"message":"successfully deleted Card"});
+      }
+      catch (err) {
+      if (!err.statusCode)
+      err.statusCode = 500
+      throw new Error(err)
+    }
+
+  },
     getAllstatements: async (req, res) => {
         // getting the profile associated with the current loggedIn user
         try {
@@ -266,8 +302,7 @@ module.exports = {
                 res.statusCode = 500;
                 throw new Error(err);
             })
-            //      // yet to implement
-            //     const coinCount = updateCoins(profileAssociated.coins, req.body.amount);
+          const coinCount = updateCoins(profileAssociated.coins, req.body.amount);
             const allProfileCardIds = profileAssociated.card
             let currentTransaction = {};
             // we will now check for every card associated with current LoggedIn user,
@@ -285,11 +320,8 @@ module.exports = {
                 // if we get the same card number associated with the currentLoggedIn user.
                 if (req.params.id === currentUserCardNumber) {
 
-                    // lets update the rewardsCoin in profile
-
-                    const duplicate = { ...profileAssociated };
-                    // duplicate.coins = coinCount; yet to be implemented
-                    // await profileAssociated.update(duplicate);
+                    profileAssociated.coins = coinCount;
+                    await profileAssociated.save();
 
                     // now we can simply create the new transaction
                     const transaction = new Transaction({
@@ -316,6 +348,7 @@ module.exports = {
                 res.status(200).send(currentTransaction);
             }
         } catch (err) {
+            console.log(err)
             if (!err.statusCode)
                 err.statusCode = 500
             throw new Error(err)

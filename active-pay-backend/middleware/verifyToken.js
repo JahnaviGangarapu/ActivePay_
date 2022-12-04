@@ -42,7 +42,7 @@ const verifyToken = async (req, res, next) => {
 //     // authenticate JWT token and attach decoded token to request as req.user
 //     jwt({ secret, algorithms: ['HS256'] }),
 
-//     // attach full user record to request object 
+//     // attach full user record to request object
 //     async (req, res, next) => {
 //         // get user with id from token 'sub' (subject) property
 //         const user = await User.findById(req.user.sub);
