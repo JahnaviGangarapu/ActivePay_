@@ -70,14 +70,12 @@ module.exports = {
                 },
                 attributes: ['id']
             });
-
-            const allRewards = await Reward.findAll({
+            const allRewards = await Reward.find({
                 where: {
                     ProfileId: profileAssociated.id
                 },
                 attributes: ['id', 'couponId', 'companyName', 'description', 'imageUrl', 'promocode', 'coinsNeeded']
             })
-
             res.status(200).send(allRewards);
         }
         catch(error) {

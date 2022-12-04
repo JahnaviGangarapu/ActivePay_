@@ -4,7 +4,10 @@ const Profile = require('../model/profile.js')
 const Transaction = require('../model/transaction.js');
 const { json } = require('body-parser');
 const cypherKey = "mySecretKey";
-
+const daysInMonth = (month, year) => {
+    const temp =  new Date(year, month + 1, 0);
+    return parseInt(temp.getDate());
+}
 function encrypt(text) {
     var cipher = crypto.createCipher('aes-256-cbc', cypherKey)
     var crypted = cipher.update(text, 'utf8', 'hex')
@@ -30,7 +33,7 @@ const updateCoins = (initialCoins, amount) => {
     const fraction = slope * daysRemaining;
     const coinsEarned = parseInt(fraction * parseInt(amount));
     const finalCoins = parseInt(initialCoins) + coinsEarned;
-    // console.log(currentYear, currentMonth, numberOfDays, todayDate, daysRemaining, slope, fraction, coinsEarned, finalCoins);
+    //console.log(currentYear, currentMonth, numberOfDays, todayDate, daysRemaining, slope, fraction, coinsEarned, finalCoins);
     return finalCoins;
 }
 module.exports = {
@@ -299,8 +302,7 @@ module.exports = {
                 res.statusCode = 500;
                 throw new Error(err);
             })
-            //      // yet to implement
-            //     const coinCount = updateCoins(profileAssociated.coins, req.body.amount);
+          const coinCount = updateCoins(profileAssociated.coins, req.body.amount);
             const allProfileCardIds = profileAssociated.card
             let currentTransaction = {};
             // we will now check for every card associated with current LoggedIn user,
@@ -318,11 +320,8 @@ module.exports = {
                 // if we get the same card number associated with the currentLoggedIn user.
                 if (req.params.id === currentUserCardNumber) {
 
-                    // lets update the rewardsCoin in profile
-
-                    const duplicate = { ...profileAssociated };
-                    // duplicate.coins = coinCount; yet to be implemented
-                    // await profileAssociated.update(duplicate);
+                    profileAssociated.coins = coinCount;
+                    await profileAssociated.save();
 
                     // now we can simply create the new transaction
                     const transaction = new Transaction({
@@ -349,6 +348,7 @@ module.exports = {
                 res.status(200).send(currentTransaction);
             }
         } catch (err) {
+            console.log(err)
             if (!err.statusCode)
                 err.statusCode = 500
             throw new Error(err)
