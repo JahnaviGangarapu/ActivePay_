@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+.Frontbg{
+  background-image: url("/Images/istockphoto-1206800961-170667a.jpg");
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -36,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+
