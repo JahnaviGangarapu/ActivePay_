@@ -8,8 +8,11 @@ import StatementScreen from './screens/StatementScreen';
 function App() {
   return (
     <Router>
-      <main >
-          
+      <main className="py-3">
+          <Container>
+          <Route path="/login" component={LoginScreen2} />
+          <Route path="/register" component={RegisterScreen2} />
+          <Route path="/profile" component={ProfileScreen2} exact />
           <Route
             path="/cards/:id/statements/:year/:month"
             component={StatementScreen}
@@ -24,7 +27,10 @@ function App() {
             path="/cards/:id/statements/:year/:month/:pageNumber"
             component={StatementScreen}
           />
+           <Route path="/" component={HomeScreen} exact />
+          </Container>
       </main>
+      <Footer />
     </Router>
   );
 }
