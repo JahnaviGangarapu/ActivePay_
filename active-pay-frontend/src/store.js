@@ -10,6 +10,11 @@ import {
 } from './reducers/userReducers';
 
 import {
+    cardListReducer,
+    cardDetailsReducer,
+  } from './reducers/cardReducer';
+
+import {
   rewardPointsReducer,
   allCouponsReducer,
 } from './reducers/rewardReducer';
@@ -21,6 +26,8 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   rewardPoints: rewardPointsReducer,
   allCoupons: allCouponsReducer,
+  cardDetails: cardDetailsReducer,
+  cardList : cardListReducer,
 });
 
 const userInfoFromLocalStorage = localStorage.getItem('userInfo')

@@ -11,7 +11,7 @@ const cardSchema = new Schema({
         required: true
     },
     outstandingAmount: {
-        type: Schema.Types.Decimal128,
+        type: Number,
         default:0
     },
     expiryMonth: {
