@@ -901,7 +901,7 @@
      order: 3
  }
  .signinbg{
-     background-image: url("./Images/360_F_353163784_mpq7dxxmnAIapCshnMI0WwVLolt53RIg.jpg");
+     background-image: url("/images/360_F_353163784_mpq7dxxmnAIapCshnMI0WwVLolt53RIg.jpg");
  }
  .order-4 {
      -ms-flex-order: 4;
@@ -5158,7 +5158,7 @@
      color:black
  }
  .Frontbg{
-     background-image: url("./Images/istockphoto-1206800961-170667a.jpg");
+     background-image: url("/images/istockphoto-1206800961-170667a.jpg");
  }
  
  .navbar-dark .navbar-nav .nav-link.disabled {

@@ -9,13 +9,13 @@
   pointer-events: none;
 }
 .Frontbg{
-  background-image: url("/Images/istockphoto-1206800961-170667a.jpg");
+  background-image: url("/images/istockphoto-1206800961-170667a.jpg");
 }
 .firstbg{
   background-image:linear-gradient(
     rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0.2)
-  ),url("/Images/paymentprocessors.webp");
+  ),url("/images/paymentprocessors.webp");
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -58,7 +58,7 @@ body {
   background-image:linear-gradient(
         rgba(0, 0, 0, 0.4),
         rgba(0, 0, 0, 0.4)
-      ),url("./Images/paymentprocessors.webp");
+      ),url("/images/paymentprocessors.webp");
       background-repeat: no-repeat;
       background-size: cover;
      // background-position: center;
