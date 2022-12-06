@@ -1,6 +1,6 @@
 import axios from '../axios';
 
-//the logic for communicating with database in server is mentioned
+//the logic for communicating with database in server is mentioned here
 //Operations on credit card like add new card, delete existing card, get all the cards is defined here.
 
 
