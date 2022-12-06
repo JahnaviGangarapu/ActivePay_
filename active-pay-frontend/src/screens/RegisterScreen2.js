@@ -91,7 +91,7 @@ const RegisterScreen2 = (props) => {
             {loading && <Loader color={'#333940'} />}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="email">
-                <Form.Label className="form-label">Email</Form.Label>
+                <Form.Label className="form-label" style={{color:"white"}}>Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
@@ -108,7 +108,7 @@ const RegisterScreen2 = (props) => {
                 )}
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label style={{color:"white"}}>Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
@@ -126,7 +126,7 @@ const RegisterScreen2 = (props) => {
               </Form.Group>
 
               <Form.Group controlId="confirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
+                <Form.Label style={{color:"white"}}>Confirm Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="confirmPassword"
@@ -146,14 +146,14 @@ const RegisterScreen2 = (props) => {
               <Button
                 type="submit"
                 disabled={!(dirty && isValid)}
-                className={!(dirty && isValid) ? 'disabled-btn' : ''}
+                className={!(dirty && isValid) ? 'disabled-btn' : ''} style={{backgroundColor:"black"}}
               >
                 Register
               </Button>
             </Form>
             <Row className="py-3">
               <Col>
-                <div className="normal-text">
+                <div className="normal-text" style={{color:"white"}}>
                   Already have an account?{' '}
                   <Link
                     to={redirect ? `/login?redirect=${redirect}` : '/login'}

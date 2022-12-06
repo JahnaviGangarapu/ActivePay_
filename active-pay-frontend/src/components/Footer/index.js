@@ -6,7 +6,7 @@ const Footer = () => {
     <div
       className="pb-0 mb-0 justify-content-center text-light"
       //style={{ backgroundColor: '#333940' }}
-      style={{backgroundImage:"linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%)" }}
+      style={{backgroundColor:"rgba(0,0,0,0.5)" }}
       //style={{background-image: "linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%)"}}
     >
       <footer>
@@ -16,8 +16,8 @@ const Footer = () => {
               <div className="row ">
                 <div className="col-xl-6 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
                   <h3
-                    className="text-muted mb-md-0 mb-5 bold-text"
-                    style={{ fontSize: '35px',color:"black" }}
+                    //className="text-muted mb-md-0 mb-5 bold-text"
+                    style={{ fontSize: '35px',color:"white" }}
                   >
                     ActivePay
                   </h3>
@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
               <div className="row ">
                 <div className="col-xl-6 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end">
-                  <p className="social text-muted mb-0 pb-0 bold-text">
+                  {/* <p className="social text-muted mb-0 pb-0 bold-text"> */}
                     {' '}
                     <span className="mx-2">
                       <i className="fab fa-facebook" aria-hidden="true"></i>
@@ -47,7 +47,7 @@ const Footer = () => {
                     <span className="mx-2">
                       <i className="fab fa-instagram" aria-hidden="true"></i>
                     </span>{' '}
-                  </p>
+                  {/* </p> */}
                   
                 </div>
 

@@ -39,7 +39,7 @@ const Header = () => {
   return (
     <header>
       <Navbar
-        bg="dark"
+        //bg="lightblack"
         variant="dark"
         expand="lg"
         collapseOnSelect

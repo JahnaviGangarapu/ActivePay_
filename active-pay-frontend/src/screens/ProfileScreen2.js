@@ -150,7 +150,7 @@ const ProfileScreen2 = (props) => {
       )}
       <Row>
         <Col md={5}>
-          <div className="text-center">
+          <div className="text-center" style={{color:"white"}}>
             <h2>User Profile</h2>
             {updateAlert && (
               <AlertMessage
@@ -171,7 +171,7 @@ const ProfileScreen2 = (props) => {
                     background: '#333940',
                     marginBottom: '15px',
                   }}
-                  src="images/avatar7.png"
+                  src="images/user-member-avatar-face-profile-icon-vector-22965342.jpg"
                   roundedCircle
                 />
                 <br />
@@ -180,7 +180,7 @@ const ProfileScreen2 = (props) => {
                   placement="left"
                   overlay={
                     readOnly ? (
-                      <Tooltip id={`tooltip-left`}>Edit Profile</Tooltip>
+                      <Tooltip id={`tooltip-left`} style={{color:"white"}}>Edit Profile</Tooltip>
                     ) : (
                       <></>
                     )
@@ -225,7 +225,7 @@ const ProfileScreen2 = (props) => {
                 <OverlayTrigger
                   placement="right"
                   overlay={
-                    <Tooltip id={`tooltip-right`}>View all coupons.</Tooltip>
+                    <Tooltip id={`tooltip-right`} style={{color:"white"}}>View all coupons.</Tooltip>
                   }
                 >
                   <Button
@@ -256,7 +256,7 @@ const ProfileScreen2 = (props) => {
                   }) => (
                     <Form onSubmit={handleSubmit} style={{ padding: '20px' }}>
                       <Form.Group as={Row} controlId="name">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{color:"white"}}>
                           Name
                         </Form.Label>
                         <Col sm="9">
@@ -279,7 +279,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="authCode">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{color:"white"}}>
                           Auth Code
                         </Form.Label>
                         <Col sm="9">
@@ -316,7 +316,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="phoneNumber">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{color:"white"}}>
                           Phone
                         </Form.Label>
                         <Col sm="9">
@@ -338,7 +338,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="email">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{color:"white"}}>
                           Email
                         </Form.Label>
                         <Col sm="9">
