@@ -10,6 +10,10 @@ import {
   CARD_LIST_FAIL,
   CARD_LIST_REQUEST,
   CARD_LIST_SUCCESS,
+  CARD_DELETE_REQUEST,
+  CARD_DELETE_SUCCESS,
+  CARD_DELETE_FAIL,
+  CARD_DELETE_RESET,
 } from '../constants/cardConstants';
 
 export const cardAddReducer = (state = {}, action) => {
@@ -49,6 +53,21 @@ export const cardDetailsReducer = (state = { card: {} }, action) => {
     case CARD_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     case CARD_DETAILS_RESET:
+      return { card: {} };
+    default:
+      return state;
+  }
+};
+
+export const cardDeleteReducer = (state = { card: {} }, action) => {
+  switch (action.type) {
+    case CARD_DELETE_REQUEST:
+      return { ...state, loading: true };
+    case CARD_DELETE_SUCCESS:
+      return { loading: false, card: action.payload };
+    case CARD_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+    case CARD_DELETE_RESET:
       return { card: {} };
     default:
       return state;
