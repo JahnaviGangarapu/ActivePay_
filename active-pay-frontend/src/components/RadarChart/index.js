@@ -1,3 +1,7 @@
+
+//Radar chart will give an idea about spendings per month done from the account
+
+
 import React from 'react';
 import { Radar } from 'react-chartjs-2';
 

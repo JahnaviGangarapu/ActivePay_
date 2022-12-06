@@ -1,3 +1,5 @@
+//This component is used for showcasing the barchart of transactions done using this account
+
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 

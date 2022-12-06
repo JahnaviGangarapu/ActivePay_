@@ -8,6 +8,7 @@ import {
     REWARD_POINTS_SUCCESS,
   } from '../constants/rewardConstant.js';
 
+  //here is the reducer for rewards points of that particular user.
 
 export const rewardPointsReducer = (state = {}, action) => {
     switch (action.type) {

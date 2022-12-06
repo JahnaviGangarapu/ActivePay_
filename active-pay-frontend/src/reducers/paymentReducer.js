@@ -4,7 +4,12 @@ import {
     PAYMENT_RESET,
     PAYMENT_SUCCESS,
   } from '../constants/paymentConstants';
-  
+
+
+  //here is the reducer for payments status.
+
+
+
   export const payReducer = (state = {}, action) => {
     switch (action.type) {
       case PAYMENT_REQUEST:
@@ -19,6 +24,3 @@ import {
         return state;
     }
   };
-  
-  
-  

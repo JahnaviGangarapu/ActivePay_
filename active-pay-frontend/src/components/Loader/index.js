@@ -1,3 +1,7 @@
+
+//This component is the css component which is showcased when page is loading
+
+
 import React from 'react';
 import { css } from '@emotion/react';
 import PuffLoader from 'react-spinners/PuffLoader';

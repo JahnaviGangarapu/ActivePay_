@@ -12,7 +12,10 @@ import {
     SMART_STATEMENT_BY_MONTH_FAIL,
     SMART_STATEMENT_BY_MONTH_RESET,
   } from '../constants/statementConstants';
-  
+
+
+  //here is the reducer for getting the account statement, monthly, recent statements.
+
   export const statementDetailsReducer = (state = { statements: [] }, action) => {
     switch (action.type) {
       case STATEMENT_BY_DATE_REQUEST:
@@ -32,7 +35,7 @@ import {
         return state;
     }
   };
-  
+
   export const recentStatementsReducer = (state = { statements: [] }, action) => {
     switch (action.type) {
       case STATEMENT_RECENT_5_REQUEST:
@@ -47,7 +50,7 @@ import {
         return state;
     }
   };
-  
+
   export const smartStatementsByMonthReducer = (state = {}, action) => {
     switch (action.type) {
       case SMART_STATEMENT_BY_MONTH_REQUEST:
@@ -62,4 +65,3 @@ import {
         return state;
     }
   };
-  

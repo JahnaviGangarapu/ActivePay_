@@ -1,3 +1,6 @@
+
+//This component is the component where a pie chart of spendings will be created and showcased
+
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 

@@ -1,12 +1,11 @@
-// author: Madhura Kurhadkar
+// This is to view the list of cards associated with the user
 
 import { getAllCards } from '../redux/actions/api';
 import { useEffect } from  'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ViewCardDetails from './viewDetailsofCard';
 
-
-// this functions renders the detailed to-do list from ShowDetailedTask file.
+// This is to view the list of cards associated with the user
 const ViewCards = () => {
   const dispatch = useDispatch();
   const cards = useSelector(state => state.cards);
@@ -21,7 +20,7 @@ const ViewCards = () => {
           cards.map(card => (
             <ViewCardDetails
               key={card._id}
-              todo = { card }
+              card = { card }
             />
           ))
         }

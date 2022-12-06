@@ -1,3 +1,7 @@
+
+//This component is used for benefits of using activepay application
+
+
 import React from 'react';
 import './styles.scss';
 
@@ -10,7 +14,7 @@ const Branding = () => {
     <div className='upperbg'>
      <p className='Main'>
       <p className="Mainslogan">
-        THE DEAL IS ON! 
+        THE DEAL IS ON!
         <div className="secondline">Get Rewards with Payments</div>
       </p></p>
       <br />
@@ -18,7 +22,7 @@ const Branding = () => {
       <p className='content'>
         Manage everything directly and easy with ActivePay.Spend more time living your life and less time worrying about paying off your bills<br/>Changing the way we manage finances. Fair, transparent, and friendly with features like giving off rewards , paying through scan QR code also adding required cards.
       </p>
-     
+
       </div>
 
       <div className="container h-100">
@@ -69,7 +73,7 @@ const Branding = () => {
           </div>
         </div>
       </div>
-     
+
     </>
   );
 };
