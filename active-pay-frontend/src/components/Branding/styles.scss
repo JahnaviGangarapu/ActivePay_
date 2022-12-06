@@ -7,14 +7,18 @@ $gr-3: linear-gradient(170deg, #d6ff7f 0%, #00b3cc 100%);
 
 .gr-1 {
   // background: $gr-1;
-  background-image: url("/Images/360_F_353163784_mpq7dxxmnAIapCshnMI0WwVLolt53RIg.jpg");
+  background-image: url("/Images/shopping-cart-with-gift-on-1265581.jpg");
   background-size: cover;
 }
 .gr-2 {
-  background: $gr-2;
+  // background: $gr-2;
+  background-image: url("/Images/istockphoto-1206800961-170667a.jpg");
+  background-size: cover;
 }
 .gr-3 {
-  background: $gr-3;
+  // background: $gr-3;
+  background-image: url("/Images/360_F_197844441_Febp1tgrOZtBPJxLIirtYKobhi4j04Z6.jpg");
+  background-size: cover;
 }
 
 * {
@@ -25,15 +29,33 @@ $gr-3: linear-gradient(170deg, #d6ff7f 0%, #00b3cc 100%);
   height: 60vh !important;
 }
 .Mainslogan{
-  font-size: x-large;
+  font-size: 50px;
   font-weight: bold;
   align-content: center;
+  padding-left: 350px;
+  color: white;
+}
+.content{
+  font-size: 20px;
+  font-weight: normal;
+  color: white;
+  padding:70px 70px;
+  background-image:linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      );
+  margin-left: 70px;
+  margin-right: 50px;
+}
+.content:hover{
+  transform-style: preserve-3d;
 }
 
 .secondline{
-  font-size: medium;
+  font-size: 20px;
   font-weight: bold;
   align-content: center;
+  padding-left: 50px;
 }
 
 @media (max-width: 768px) {
@@ -46,13 +68,13 @@ $gr-3: linear-gradient(170deg, #d6ff7f 0%, #00b3cc 100%);
   top: 50%;
   transform: translateY(-50%);
 }
-.upperbg{
-  background-image:linear-gradient(
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2)
-  ),url("/Images/paymentprocessors.webp");
-  margin-left: 0;
-}
+// .upperbg{
+//   background-image:linear-gradient(
+//     rgba(0, 0, 0, 0.2),
+//     rgba(0, 0, 0, 0.2)
+//   ),url("/Images/paymentprocessors.webp");
+//   margin-left: 0;
+// }
 
 .my-column {
  // margin-top: 3rem;
@@ -116,7 +138,7 @@ $gr-3: linear-gradient(170deg, #d6ff7f 0%, #00b3cc 100%);
   a {
     z-index: 3;
     font-size: 0.7rem;
-    color: rgba(0, 0, 0, 1);
+   // color: rgba(0, 0, 0, 1);
     margin-left: 1rem;
     position: relative;
     bottom: -0.5rem;

@@ -15,7 +15,10 @@ const Branding = () => {
       </p></p>
       <br />
       <br />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <p className='content'>
+        Manage everything directly and easy with ActivePay.Spend more time living your life and less time worrying about paying off your bills<br/>Changing the way we manage finances. Fair, transparent, and friendly with features like giving off rewards , paying through scan QR code also adding required cards.
+      </p>
+     
       </div>
 
       <div className="container h-100">
@@ -24,13 +27,13 @@ const Branding = () => {
             <div className="card gr-1">
               <div className="txt">
                 <h1>
-                  feel special
+                Think Outside.
                   <br></br>
                   more often.
                 </h1>
                 <p>exclusive rewards for paying your bills</p>
               </div>
-              <Link to="/rewards">More</Link>
+              <Link to="/rewards" style={{Color:"white"}}>More</Link>
               <div className="ico-card">
               </div>
             </div>
@@ -39,15 +42,14 @@ const Branding = () => {
             <div className="card gr-2">
               <div className="txt">
                 <h1>
-                  we take your money
+                It’s How Transactions
                   <br></br>
-                  matters seriously.
+                  Are Done.
                 </h1>
                 <p>so that you don’t have to.</p>
               </div>
               <Link to="/profile">More</Link>
               <div className="ico-card">
-                <i className="fas fa-shield-alt"></i>
               </div>
             </div>
           </div>
@@ -58,11 +60,10 @@ const Branding = () => {
                   simply add your<br></br>
                   credit card
                 </h1>
-                <p>and leave everything upon us.</p>
+                <p>Staying smarter, together</p>
               </div>
               <Link to="/cards/add/new">More</Link>
               <div className="ico-card">
-                <i className="far fa-credit-card"></i>
               </div>
             </div>
           </div>

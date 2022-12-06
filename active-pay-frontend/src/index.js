@@ -1,16 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import "./styles/Header.scss";
-import "./styles/FrontContent.scss";
-//import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  
+import store from './store';
+import './bootstrap.min.css';
+import './index.scss';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+if (process.env.NODE_ENV === 'development') {
+  console.log('True');
+}
+
+ReactDOM.render(
+  <Provider store={store}>
     <App />
-  
+  </Provider>,
+  document.getElementById('root')
 );
 
-
+reportWebVitals();
