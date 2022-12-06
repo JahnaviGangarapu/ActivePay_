@@ -162,7 +162,7 @@ module.exports = {
         }
 
     },
-  deleteCardById: async (req, res) => {       // function added by Madhura Kurhadkar
+  deleteCardById: async (req, res) => {       // function to delete card from user profile and card db
     try {
       const profileAssociated = await Profile.findById({
           _id: req.user.id
@@ -172,14 +172,17 @@ module.exports = {
       })
       const cardsAssociated = profileAssociated.card
       for (const profileCardId of cardsAssociated) {
+        // if we get the same card number associated with the currentLoggedIn user.
         if(profileCardId==req.params.card_id){
+          //delete card from the card array
                const delete_card=await Card.findByIdAndDelete({
                  _id:profileCardId
                }).catch((err)=>{
                  throw new Error("Error in deleting Card")
                })
+               //delete card from profile
                profileAssociated.card=profileAssociated.card.filter(i=>i!==profileCardId)
-                await profileAssociated.save().catch((err)=>{
+                await profileAssociated.save().catch((err)=>{ // ave the updated card array of the current user's profile
                  throw new Error("Error in deleting Card from Profile")
                })
                break
@@ -222,7 +225,7 @@ module.exports = {
                         res.statusCode = 500;
                         throw new Error(err);
                     })
-                    statements.sort(function (a, b) {
+                    statements.sort(function (a, b) {   // sort the statements received based on dates in sescending order
                         if (a.transactionDateTime > b.transactionDateTime)
                             return 1;
                         if (a.transactionDateTime < b.transactionDateTime)
@@ -249,8 +252,9 @@ module.exports = {
             throw new Error(err)
         }
     },
-    postStatements: async (req, res) => {
+    postStatements: async (req, res) => {   // function check if the transaction amount is within the balance available in credit card and then to store statements in the database.
         try {
+          // find card associated with the current user
             const cardAssociated = await Card.findOne({
                 cardNumber: encrypt(req.params.id)
             }).catch((err) => {
@@ -292,7 +296,7 @@ module.exports = {
             throw new Error(err)
         }
     },
-    payBill: async (req, res) => {
+    payBill: async (req, res) => {      // function to pay bill of the credit card
 
         try {
             // getting the profile associated with the current loggedIn user

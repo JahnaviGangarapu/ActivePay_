@@ -1,3 +1,6 @@
+
+//rewards will have a couponId, what company name is that reward and how many cions will be required to purchase it.
+
 const { number } = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
