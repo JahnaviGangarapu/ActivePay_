@@ -17,6 +17,7 @@ import {
   CARD_DELETE_REQUEST,
   CARD_DELETE_SUCCESS,
   CARD_DELETE_FAIL,
+  // eslint-disable-next-line
   CARD_DELETE_RESET,
 } from '../constants/cardConstants';
 

@@ -900,9 +900,9 @@
      -ms-flex-order: 3;
      order: 3
  }
- .signinbg{
+ /* .signinbg{
      background-image: url("/images/360_F_353163784_mpq7dxxmnAIapCshnMI0WwVLolt53RIg.jpg");
- }
+ } */
  .order-4 {
      -ms-flex-order: 4;
      order: 4
@@ -4140,7 +4140,7 @@
      min-height: 1.3125rem;
      padding-left: 1.5rem;
      -webkit-print-color-adjust: exact;
-     color-adjust: exact
+     print-color-adjust: exact
  }
  
  .custom-control-inline {
@@ -5157,9 +5157,9 @@
  .navbar-dark .navbar-nav .nav-link:hover {
      color:black
  }
- .Frontbg{
+ /* .Frontbg{
      background-image: url("/images/istockphoto-1206800961-170667a.jpg");
- }
+ } */
  
  .navbar-dark .navbar-nav .nav-link.disabled {
      color: rgba(255, 255, 255, .25)

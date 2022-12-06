@@ -6,9 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
-.Frontbg{
+/* .Frontbg{
   background-image: url("/images/istockphoto-1206800961-170667a.jpg");
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
