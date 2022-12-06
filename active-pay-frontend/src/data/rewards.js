@@ -1,3 +1,5 @@
+//here is hard-coded data of rewards for demo purpose.
+
 export const rewards = [
     {
       id: 1,
@@ -70,4 +72,3 @@ export const rewards = [
       url: '/images/amazon.png',
     },
   ];
-  

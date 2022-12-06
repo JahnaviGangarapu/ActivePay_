@@ -7,7 +7,6 @@ import Loader from 'react-spinners/PuffLoader';
 import { getCardById } from '../actions/cardActions';
 import { getRecentStatements } from '../actions/statementActions';
 import AlertMessage from '../components/AlertMessage';
-import CreditCard2 from '../components/CreditCard2';
 import ModalForm from '../components/ModalForm';
 import Dropdown from '../components/Dropdown';
 import TransactionTable from '../components/TransactionTable';

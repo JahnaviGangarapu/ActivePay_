@@ -1,3 +1,7 @@
+
+
+//Add new card is done using the below form, where user enters details of cards
+
 import React, { useState } from 'react';
 
 import FormContainer from '../FormContainer';

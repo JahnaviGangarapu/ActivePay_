@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addCard } from '../actions/cardActions';
-import CreditCard3 from '../components/CreditCard3';
 import CreditCardForm from '../components/CreditCardForm';
 import { CARD_ADD_RESET } from '../constants/cardConstants';
 import Loader from '../components/Loader';
@@ -144,19 +143,6 @@ const AddCardScreen = (props) => {
               authCode={authCode}
               handleAuthCodeChange={handleAuthCodeChange}
             >
-              <CreditCard3
-                cardNumber={state.cardNumber}
-                cardHolder={state.cardHolder}
-                cardMonth={state.cardMonth}
-                cardYear={state.cardYear}
-                cardCvv={state.cardCvv}
-                isCardFlipped={state.isCardFlipped}
-                currentFocusedElm={currentFocusedElm}
-                onCardElementClick={focusFormFieldByKey}
-                cardNumberRef={cardElementsRef.cardNumber}
-                cardHolderRef={cardElementsRef.cardHolder}
-                cardDateRef={cardElementsRef.cardDate}
-              ></CreditCard3>
             </CreditCardForm>
           </div>
         </>

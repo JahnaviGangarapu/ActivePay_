@@ -1,4 +1,4 @@
-//author: Madhura Kurhadkar
+//the constants for card operations are defined here.
 
 export const AddNewCard = 'AddNewCard';
 export const GetAllCards = 'GetAllCards';

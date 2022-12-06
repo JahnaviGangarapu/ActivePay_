@@ -1,5 +1,8 @@
+
+//This component is the header of entire application where the header is deigned using HTML tags and javaScript logic
+
+
 import React, { useEffect } from 'react';
-// eslint-disable-next-line
 import { Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
@@ -7,7 +10,6 @@ import {
   Nav,
   Container,
   NavDropdown,
-  // eslint-disable-next-line
   Image,
   NavLink,
 } from 'react-bootstrap';

@@ -16,6 +16,10 @@ import {
   CARD_DELETE_RESET,
 } from '../constants/cardConstants';
 
+
+//here is the reducer for adding new card, getting all cards, get a card by id, delete a card.
+
+//add card reducer function
 export const cardAddReducer = (state = {}, action) => {
   switch (action.type) {
     case CARD_ADD_REQUEST:
@@ -31,6 +35,7 @@ export const cardAddReducer = (state = {}, action) => {
   }
 };
 
+//list down all cards reducer function
 export const cardListReducer = (state = { cards: [] }, action) => {
   switch (action.type) {
     case CARD_LIST_REQUEST:
@@ -44,6 +49,7 @@ export const cardListReducer = (state = { cards: [] }, action) => {
   }
 };
 
+//details of  card reducer function
 export const cardDetailsReducer = (state = { card: {} }, action) => {
   switch (action.type) {
     case CARD_DETAILS_REQUEST:
@@ -59,6 +65,7 @@ export const cardDetailsReducer = (state = { card: {} }, action) => {
   }
 };
 
+//delete card reducer function
 export const cardDeleteReducer = (state = { card: {} }, action) => {
   switch (action.type) {
     case CARD_DELETE_REQUEST:

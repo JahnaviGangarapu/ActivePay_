@@ -1,3 +1,7 @@
+// here are the constants related to rewards functionality use through out the redux front end of the project
+
+
+
 export const REWARD_POINTS_REQUEST = 'REWARD_POINTS_REQUEST';
 export const REWARD_POINTS_SUCCESS = 'REWARD_POINTS_SUCCESS';
 export const REWARD_POINTS_FAIL = 'REWARD_POINTS_FAIL';

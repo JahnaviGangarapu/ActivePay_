@@ -1,3 +1,5 @@
+// here are the constants related to card functionality use through out the redux front end of the project
+
 export const CARD_ADD_REQUEST = 'CARD_ADD_REQUEST'
 export const CARD_ADD_SUCCESS = 'CARD_ADD_SUCCESS'
 export const CARD_ADD_FAIL = 'CARD_ADD_FAIL'

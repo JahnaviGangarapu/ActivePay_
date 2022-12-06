@@ -1,4 +1,4 @@
-//author: Madhura Kurhadkar
+//This is written to fetch the details of the card when user clicks on Details button
 
 import React from 'react';
 import { deleteCard } from '../redux/actions/api';
@@ -12,13 +12,13 @@ const ViewCardDetails =  ({ card }) =>{
 
   const deleteCard =(e) =>{
     dispatch(deleteCard(card._id)); // calls the function which will delete from db
-    deleteClass(e); // applies css of deleted component
+    deleteClass(e);
   }
 
   const deleteClass = (e) => {
     if(e.target.classList[0] === 'delete-btn'){
     const card = e.target.parentElement;
-    card.classList.toggle('fall');     // this will apply the CSS of 'fall(deleted)' class, which is to strike-out the list title.
+    card.classList.toggle('fall');
   }
   };
 
