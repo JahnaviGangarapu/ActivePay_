@@ -184,7 +184,7 @@ const ProfileScreen2 = (props) => {
                   placement="left"
                   overlay={
                     readOnly ? (
-                      <Tooltip id={`tooltip-left`} style={{Color:"white"}}>Edit Profile</Tooltip>
+                      <Tooltip id={`tooltip-left`} style={{color:"white"}}>Edit Profile</Tooltip>
                     ) : (
                       <></>
                     )
@@ -195,7 +195,7 @@ const ProfileScreen2 = (props) => {
                     onClick={() => setReadOnly(false)}
                     disabled={!readOnly}
                     style={{ margin: '0.5rem 1rem' }}
-                    variant="outline-primary"
+                    variant="outline-light"
                   >
                     <i className="far fa-edit"></i>
                   </Button>
@@ -211,7 +211,7 @@ const ProfileScreen2 = (props) => {
                 >
                   <Button
                     className="btn-sm"
-                    variant="outline-primary"
+                    variant="outline-light"
                     style={{ margin: '0.5rem 1rem' }}
                     onClick={handleReminderClick}
                     disabled={disableReminder}
@@ -234,7 +234,7 @@ const ProfileScreen2 = (props) => {
                 >
                   <Button
                     className="btn-sm"
-                    variant="outline-primary"
+                    variant="outline-light"
                     style={{ margin: '0.5rem 1rem' }}
                     onClick={handleCouponClick}
                   >

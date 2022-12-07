@@ -14,11 +14,12 @@ import {
 } from "react-bootstrap";
 import QrReader from "react-qr-scanner";
 import axios from "../../axios";
-
+import SearchBox from '../SearchBox';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { getRewardPoints } from "../../actions/rewardActions";
 import { listCards } from "../../actions/cardActions";
+import './index.scss';
 import { payAmount } from "../../actions/paymnetActions";
 
 const Header = () => {
@@ -36,10 +37,10 @@ const Header = () => {
   const [result, setResult] = useState("Empty");
   const [toggleCamera, setToggleCamera] = useState(true);
   const [card, setCard] = useState("Select a Card");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
 
   const handleCloseModal = () => {
-    setToggleCamera(!toggleCamera);
+    setToggleCamera(true);
     setShowModal(false);
   };
 
@@ -122,49 +123,50 @@ const Header = () => {
         variant="dark"
         expand="lg"
         collapseOnSelect
-        className="navbar-fixed-bottom navbar-inner"
+        className="Navbar1"
       >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <Image
-                style={{ width: "40%", height: "auto" }}
-                src="/images/cred-logo.png"
-              />
+            <p className='logo'>ActivePay</p>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+          <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className="ml-auto">
               {userInfo ? (
                 <>
-                  <Button onClick={handleShowModal} variant="outline-success">
-                    Scan & Pay
-                  </Button>
+                  {/* <Button onClick={handleShowModal} variant="outline-success"> */}
+                    <NavLink onClick={handleShowModal}> Scan & Pay    </NavLink>
+                  {/* </Button> */}
                   <Modal
                     show={showModal}
                     onHide={handleCloseModal}
                     keyboard={true}
+                    // = "modal-container"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
                   >
-                    <Modal.Header closeButton>
-                      <Modal.Title>Scan and Pay</Modal.Title>
+                    <Modal.Header  closeButton>
+                      <Modal.Title className="back-color">Scan and Pay</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body style={{ paddingBottom: "0" }}>
+                    <Modal.Body  style={{ paddingBottom: "0" }} className="back-color">
                       {toggleCamera && (
                         <QrReader
                           style={previewStyle}
                           onError={handleError}
                           onScan={handleScan}
+                          className="qr-scanner"
                         />
                       )}
-                      {true && (
+                      {!toggleCamera && (
                         <div>
-                          <h2>$</h2>
-                          <h6>{result} </h6>
+                          <h2 className="back-color pad-10">$</h2>
+                          <h6 className="back-color pad-12">{result} </h6>
                           {/* <h5>{card.cardNumber}</h5> */}
-                          <select onChange={handleCardChange}>
+                          <div className="pad-12">
+                          <select className="select-stylin" onChange={handleCardChange}>
                             <option value="Select a card">
                               {" "}
                               -- Select a Card --{" "}
@@ -174,18 +176,23 @@ const Header = () => {
                               <option value={card.id}>{card.cardNumber}</option>
                             ))}
                           </select>
-                          <input type="text" placeholder="Enter amount" value = {amount} onChange = { handleBuyAmount }  />
+                          </div> <br />
+                          <div className="col-12 pad-12">
+                          <input type="text" className="textbox-12" placeholder="Enter amount" value = {amount} onChange = { handleBuyAmount }  />
+                          <span className="focus-border-12"></span> <br />
+                          </div> 
+                         
                         </div>
                       )}
                     </Modal.Body>
-                    <Modal.Footer>
-                    <Button
+                    <Modal.Footer className="back-color btn-action">
+                    {!toggleCamera && ( <Button
                   onClick= { addPayment }
-                  variant="success"
+                  className="btn btn-outline-success btn btn-primary justify-content-center"
                   // disabled={disableButton}
                 >
                   Pay
-                </Button>
+                </Button>)}
                     </Modal.Footer>
                   </Modal>
                   {coins && (

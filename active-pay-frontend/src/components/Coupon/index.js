@@ -61,7 +61,7 @@ const Coupon = (props) => {
     <Card style={{ width: '20rem' }} className="my-3 rounded">
       <div className="embed-responsive embed-responsive-1by1">
         <Card.Img
-          className="embed-responsive-item rounded-circle"
+          className="embed-responsive-item rounded-circle obj-fit"
           variant="top"
           src={reward.url}
         />
@@ -97,7 +97,7 @@ const Coupon = (props) => {
                   ? 'float-right disabled-btn'
                   : 'float-right'
               }
-              variant="outline-success"
+              variant="outline-dark"
               disabled={reward.coin > userCoin}
             >
               Buy
@@ -111,7 +111,7 @@ const Coupon = (props) => {
               centered
             >
               <Modal.Header closeButton>
-                <Modal.Title>Are you sure to by this coupon?</Modal.Title>
+                <Modal.Title className='modalTitle'>Are you sure to by this coupon?</Modal.Title>
               </Modal.Header>
               <Modal.Body style={{ paddingBottom: '0' }}>
                 <h3 style={{ textTransform: 'none' }}>{reward.company}</h3>

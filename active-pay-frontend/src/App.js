@@ -9,7 +9,7 @@ import AddCardScreen from './screens/AddCardScreen';
 import LoginScreen2 from './screens/LoginScreen2';
 import RegisterScreen2 from './screens/RegisterScreen2';
 import ProfileScreen2 from './screens/ProfileScreen2';
-import CardScreen from './screens/CardScreen';
+import CardScreen from './screens/cardScreen';
 import StatementScreen from './screens/StatementScreen';
 import SmartStatementScreen from './screens/SmartStatementScreen';
 import RewardScreen from './screens/RewardScreen';
