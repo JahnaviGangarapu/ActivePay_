@@ -22,6 +22,8 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants';
 
+const api_url = "http://localhost:8082";
+
 //LOGIN USER
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -34,7 +36,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      '/api/user/login',
+      `${api_url}/api/user/login`,
       { email, password },
       config
     );
@@ -69,7 +71,7 @@ export const register = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      '/api/user/signup',
+      `${api_url}/api/user/signup`,
       { email, password },
       config
     );
@@ -102,7 +104,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/user/${id}`, config);
+    const { data } = await axios.get(`${api_url}/api/user/profile/`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -132,7 +134,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.patch('/api/user/profile', user, config);
+    const { data } = await axios.patch(`${api_url}/api/user/profile/`, user, config);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (err) {
     dispatch({

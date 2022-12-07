@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/css": "^10.0.27",
+    "@emotion/react": "^11.10.5",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "cross-env": "^7.0.3",

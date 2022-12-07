@@ -9,6 +9,9 @@ import {
   REWARD_POINTS_SUCCESS,
 } from '../constants/rewardConstant';
 
+const api_url = "http://localhost:8082";
+
+
 export const getRewardPoints = () => async (dispatch, getState) => {
   try {
     dispatch({ type: REWARD_POINTS_REQUEST });
@@ -24,7 +27,7 @@ export const getRewardPoints = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get('/api/rewards/coins', config);
+    const { data } = await axios.get(`${api_url}/api/rewards/coins`, config);
     dispatch({ type: REWARD_POINTS_SUCCESS, payload: data.coinsCount });
   } catch (err) {
     dispatch({
@@ -51,7 +54,7 @@ export const getAllCoupons = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get('/api/rewards', config);
+    const { data } = await axios.get(`${api_url}/api/rewards/rewards`, config);
     dispatch({ type: ALL_COUPONS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({

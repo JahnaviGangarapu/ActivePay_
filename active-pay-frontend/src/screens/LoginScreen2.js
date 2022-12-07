@@ -10,6 +10,8 @@ import FormContainer from '../components/FormContainer';
 import AlertMessage from '../components/AlertMessage';
 import Loader from '../components/Loader';
 
+const api_url = "http://localhost:8082";
+
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 // const phoneRegex = /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g
 const validationSchema = yup.object().shape({
@@ -127,7 +129,7 @@ const LoginScreen2 = (props) => {
                   New Customer?{' '}
                   <Link
                     to={
-                      redirect ? `/register?redirect=${redirect}` : '/register'
+                      redirect ? `${api_url}/register?redirect=${redirect}` : '/register'
                     }
                   >
                     Register

@@ -10,6 +10,8 @@ import {
   PAYMENT_SUCCESS,
 } from '../constants/paymentConstants';
 
+const api_url = "http://localhost:8082";
+
 export const payAmount = (cardNo, amount) => async (dispatch, getState) => {
   try {
     dispatch({ type: PAYMENT_REQUEST });
@@ -25,7 +27,7 @@ export const payAmount = (cardNo, amount) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      `/api/cards/${cardNo}/pay`,
+      `${api_url}/api/cards/${cardNo}/pay`,
       { amount },
       config
     );

@@ -20,6 +20,7 @@ import {
   // eslint-disable-next-line
   CARD_DELETE_RESET,
 } from '../constants/cardConstants';
+const api_url = "http://localhost:8082";
 
 //Below is a function which will add new card in the database. It will take user input from the front end.
 export const addCard = (card) => async (dispatch, getState) => {
@@ -36,7 +37,7 @@ export const addCard = (card) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/cards`, card, config);
+    const { data } = await axios.post(`${api_url}/api/cards`, card, config);
     dispatch({ type: CARD_ADD_SUCCESS, payload: data });    // this adds the new card to mongo db
   } catch (err) {
     dispatch({
@@ -65,7 +66,7 @@ export const listCards = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/cards`, config); // this gets all the cards of the particular user from thte db.
+    const { data } = await axios.get(`${api_url}/api/cards`, config); // this gets all the cards of the particular user from thte db.
     dispatch({ type: CARD_LIST_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -93,8 +94,8 @@ export const getCardById = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log('URL is: ', `/api/cards/${id}`);
-    const { data } = await axios.get(`/api/cards/${id}`, config); //this line will fetch card from the mongo db.
+    console.log('URL is: ', `${api_url}/api/cards/${id}`);
+    const { data } = await axios.get(`${api_url}/api/cards/${id}`, config); //this line will fetch card from the mongo db.
     console.log('Card Details', data);
     dispatch({ type: CARD_DETAILS_SUCCESS, payload: data });    // after successful fetch of the  card, this will return the JSON to front end
   } catch (err) {
@@ -123,8 +124,8 @@ export const deleteCardById = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log('URL is: ', `/api/cards/${id}`);
-    const { data } = await axios.delete(`/api/cards/${id}`, config);    // here the card will be deleted from the db
+    console.log('URL is: ', `${api_url}/api/cards/${id}`);
+    const { data } = await axios.delete(`${api_url}/api/cards/${id}`, config);    // here the card will be deleted from the db
     console.log('Card Details', data);
     dispatch({ type: CARD_DELETE_SUCCESS, payload: data });
   } catch (err) {

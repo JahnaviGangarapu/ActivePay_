@@ -1,5 +1,5 @@
 
-//below is the code for fetching the account statement from the database 
+//below is the code for fetching the account statement from the database
 
 
 import axios from '../axios';
@@ -15,6 +15,8 @@ import {
   STATEMENT_RECENT_5_REQUEST,
   STATEMENT_RECENT_5_SUCCESS,
 } from '../constants/statementConstants';
+
+const api_url = "http://localhost:8082";
 
 export const getStatementsByMonth = (
   cardNo,
@@ -36,7 +38,7 @@ export const getStatementsByMonth = (
     };
 
     const { data } = await axios.get(
-      `/api/cards/${cardNo}/statements/${year}/${month}?pageNumber=${pageNumber}`,
+      `${api_url}/api/cards/${cardNo}/statements/${year}/${month}?pageNumber=${pageNumber}`,
       config
     );
     dispatch({ type: STATEMENT_BY_DATE_SUCCESS, payload: data });
@@ -68,7 +70,7 @@ export const getRecentStatements = (cardNo, count = 3) => async (
       },
     };
 
-    let { data } = await axios.get(`/api/cards/${cardNo}/statements`, config);
+    let { data } = await axios.get(`${api_url}/api/cards/${cardNo}/statements`, config);
     data.reverse();
     if (data.length > count) {
       data = data.slice(0, count);
@@ -103,7 +105,7 @@ export const getSmartStatementsByMonth = (cardNo, year, month) => async (
     };
 
     const { data } = await axios.get(
-      `/api/cards/${cardNo}/smartStatement/${year}/${month}`,
+      `${api_url}/api/cards/${cardNo}/smartStatement/${year}/${month}`,
       config
     );
     dispatch({ type: SMART_STATEMENT_BY_MONTH_SUCCESS, payload: data });

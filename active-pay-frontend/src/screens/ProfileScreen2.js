@@ -21,6 +21,7 @@ import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Loader from 'react-spinners/PuffLoader';
 import { LinkContainer } from 'react-router-bootstrap';
 
+const api_url = "http://localhost:8082";
 const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
 const phoneRegex = /^\d{10}$/g;
 
@@ -125,7 +126,7 @@ const ProfileScreen2 = (props) => {
     };
     setDisableReminder(true);
     const { data } = await axios.patch(
-      '/api/user/profile',
+      `${api_url}/api/user/profile`,
       { reminders: !reminder },
       config
     );
@@ -417,7 +418,7 @@ const ProfileScreen2 = (props) => {
                         <td>{card.cardOwnerName}</td>
                         <td>{card.outstandingAmount}</td>
                         <td>
-                          <LinkContainer to={`/cards/${card.id}`}>
+                          <LinkContainer to={`${api_url}/cards/${card.id}`}>
                             <Button
                               className="btn-sm btn btn-outline-info"
                               variant="light"

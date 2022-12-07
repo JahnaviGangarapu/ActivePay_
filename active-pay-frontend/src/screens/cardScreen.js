@@ -11,6 +11,9 @@ import ModalForm from '../components/ModalForm';
 import Dropdown from '../components/Dropdown';
 import TransactionTable from '../components/TransactionTable';
 
+const api_url = "http://localhost:8082";
+
+
 const getMonthsArr = (year) => {
   let d = new Date();
   let monthsArr = [];
@@ -59,7 +62,7 @@ const CardScreen = (props) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login');
+      history.push(`${api_url}/login`);
     } else {
       if (!card.cardNumber) {
         dispatch(getCardById(cardId));
@@ -169,7 +172,7 @@ const CardScreen = (props) => {
 
                 <Col md={3}>
                   <LinkContainer
-                    to={`/cards/${cardId}/statements/${parseInt(
+                    to={`${api_url}/cards/${cardId}/statements/${parseInt(
                       year
                     )}/${parseInt(month)}`}
                   >
@@ -183,7 +186,7 @@ const CardScreen = (props) => {
                 </Col>
                 <Col md={3}>
                   <LinkContainer
-                    to={`/cards/${cardId}/smartstatements/${parseInt(
+                    to={`${api_url}/cards/${cardId}/smartstatements/${parseInt(
                       year
                     )}/${parseInt(month)}`}
                   >

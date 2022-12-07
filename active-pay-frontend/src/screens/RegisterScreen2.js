@@ -10,6 +10,8 @@ import FormContainer from '../components/FormContainer';
 import AlertMessage from '../components/AlertMessage';
 import Loader from '../components/Loader';
 
+const api_url = "http://localhost:8082";
+
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
 // const phoneRegex = /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g
@@ -156,7 +158,7 @@ const RegisterScreen2 = (props) => {
                 <div className="normal-text" style={{color:"white"}}>
                   Already have an account?{' '}
                   <Link
-                    to={redirect ? `/login?redirect=${redirect}` : '/login'}
+                    to={redirect ? `${api_url}/login?redirect=${redirect}` : '/login'}
                   >
                     Sign In
                   </Link>
