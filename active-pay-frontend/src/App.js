@@ -1,19 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import './App.css';
+import './App.scss';
 import SmartStatementScreen from './screens/SmartStatementScreen';
 import StatementScreen from './screens/StatementScreen';
 import LoginScreen2 from './screens/LoginScreen2';
 import RegisterScreen2 from './screens/RegisterScreen2';
 import ProfileScreen2 from './screens/ProfileScreen2';
 import HomeScreen from './screens/HomeScreen';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <Router>
-      <main className="py-3">
+      {/* <main className="py-3"> */}
+      <Header />
           <Container>
           <Route path="/login" component={LoginScreen2} />
           <Route path="/register" component={RegisterScreen2} />
@@ -34,7 +37,8 @@ function App() {
           />
            <Route path="/" component={HomeScreen} exact />
           </Container>
-      </main>
+          <Footer />
+      {/* </main> */}
     </Router>
   );
 }
