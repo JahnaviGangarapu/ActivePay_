@@ -10,10 +10,18 @@ import {
 } from './reducers/userReducers';
 
 import {
-    cardListReducer,
-    cardDetailsReducer,
-  } from './reducers/cardReducer';
+  cardAddReducer,
+  cardListReducer,
+  cardDetailsReducer,
+} from './reducers/cardReducer';
 
+import {
+  statementDetailsReducer,
+  recentStatementsReducer,
+  smartStatementsByMonthReducer,
+} from './reducers/statementReducer';
+
+import { payReducer } from './reducers/paymentReducer';
 import {
   rewardPointsReducer,
   allCouponsReducer,
@@ -24,10 +32,15 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  cardAdd: cardAddReducer,
+  cardList: cardListReducer,
+  cardDetails: cardDetailsReducer,
+  statementDetails: statementDetailsReducer,
+  smartStatementsByMonth: smartStatementsByMonthReducer,
+  recentStatements: recentStatementsReducer,
+  pay: payReducer,
   rewardPoints: rewardPointsReducer,
   allCoupons: allCouponsReducer,
-  cardDetails: cardDetailsReducer,
-  cardList : cardListReducer,
 });
 
 const userInfoFromLocalStorage = localStorage.getItem('userInfo')

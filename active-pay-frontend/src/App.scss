@@ -8,6 +8,15 @@
   height: 40vmin;
   pointer-events: none;
 }
+.Frontbg{
+  background-image: url("/images/istockphoto-1206800961-170667a.jpg");
+}
+.firstbg{
+  background-image:linear-gradient(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+  ),url("/images/paymentprocessors.webp");
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -46,6 +55,15 @@ body {
   background: #ddeefc;
   // font-family: 'Source Sans Pro', sans-serif;
   // font-size: 16px;
+  background-image:linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+      ),url("/images/paymentprocessors.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+     // background-position: center;
+
+
 }
 // * {
 //     box-sizing: border-box;
@@ -299,4 +317,11 @@ i.authcode-show:hover {
     font-size: 1.8rem;
   }
 }
+
+.navbar-fixed-bottom navbar-inner{
+  background-color: antiquewhite;
+}
+// .Navbar1{
+//   background-color:#fff;
+// }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------

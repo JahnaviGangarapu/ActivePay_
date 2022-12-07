@@ -8,8 +8,8 @@ const cypherKey = "mySecretKey";
 
 function randomValueHex (len) {
     return crypto.randomBytes(Math.ceil(len/2))
-        .toString('hex') 
-        .slice(0,len).toUpperCase();  
+        .toString('hex')
+        .slice(0,len).toUpperCase();
 }
 
 module.exports = {
@@ -20,6 +20,7 @@ module.exports = {
             where: {
                 UserId: userId
             },
+            //if profile is found ,get the coins associated to it
             attributes: ['coins']
         })
         .catch((err) => {
@@ -42,7 +43,7 @@ module.exports = {
 
             const duplicate = {...profileAssociated._doc};
             duplicate.coins = parseInt(profileAssociated.coins) - parseInt(req.body.coinsNeeded);
-
+            // when user purchases a reward just generate a coupon code and share it to the user.
             const couponPromoCode = randomValueHex(4) + "-" + randomValueHex(4) + "-" + randomValueHex(4);
 
             await Reward.create({
@@ -72,6 +73,7 @@ module.exports = {
                 },
                 attributes: ['id']
             });
+            // when user is eligible for rewards just show all the rewards user can purchase with the coins earned
             const allRewards = await Reward.find({
                 where: {
                     ProfileId: profileAssociated.id
@@ -86,4 +88,3 @@ module.exports = {
         }
     }
 }
-

@@ -16,10 +16,12 @@ import { Formik } from 'formik';
 import axios from '../axios';
 
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { listCards } from '../actions/cardActions';
 import AlertMessage from '../components/AlertMessage';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Loader from 'react-spinners/PuffLoader';
 import { LinkContainer } from 'react-router-bootstrap';
+import { CARD_DETAILS_RESET } from '../constants/cardConstants';
 
 const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
 const phoneRegex = /^\d{10}$/g;
@@ -68,12 +70,14 @@ const ProfileScreen2 = (props) => {
   const { success: updateSuccess } = userUpdateProfile;
 
   const cardList = useSelector((state) => state.cardList);
-  // const { cards, error: errorCards, loading: loadingCards } = cardList;
+  const { cards, error: errorCards, loading: loadingCards } = cardList;
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
     } else {
+      dispatch({ type: CARD_DETAILS_RESET });
+      dispatch(listCards());
       if (!user.email || updateSuccess) {
         if (updateSuccess) {
           setUpdateAlert(true);
@@ -150,7 +154,7 @@ const ProfileScreen2 = (props) => {
       )}
       <Row>
         <Col md={5}>
-          <div className="text-center">
+          <div className="text-center" style={{Color:"white"}}>
             <h2>User Profile</h2>
             {updateAlert && (
               <AlertMessage
@@ -180,7 +184,7 @@ const ProfileScreen2 = (props) => {
                   placement="left"
                   overlay={
                     readOnly ? (
-                      <Tooltip id={`tooltip-left`}>Edit Profile</Tooltip>
+                      <Tooltip id={`tooltip-left`} style={{Color:"white"}}>Edit Profile</Tooltip>
                     ) : (
                       <></>
                     )
@@ -225,7 +229,7 @@ const ProfileScreen2 = (props) => {
                 <OverlayTrigger
                   placement="right"
                   overlay={
-                    <Tooltip id={`tooltip-right`}>View all coupons.</Tooltip>
+                    <Tooltip id={`tooltip-right`} style={{Color:"white"}}>View all coupons.</Tooltip>
                   }
                 >
                   <Button
@@ -256,7 +260,7 @@ const ProfileScreen2 = (props) => {
                   }) => (
                     <Form onSubmit={handleSubmit} style={{ padding: '20px' }}>
                       <Form.Group as={Row} controlId="name">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{Color:"white"}}>
                           Name
                         </Form.Label>
                         <Col sm="9">
@@ -279,7 +283,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="authCode">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{Color:"white"}}>
                           Auth Code
                         </Form.Label>
                         <Col sm="9">
@@ -316,7 +320,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="phoneNumber">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{Color:"white"}}>
                           Phone
                         </Form.Label>
                         <Col sm="9">
@@ -338,7 +342,7 @@ const ProfileScreen2 = (props) => {
                         </Col>
                       </Form.Group>
                       <Form.Group as={Row} controlId="email">
-                        <Form.Label column sm="3" className="form-label">
+                        <Form.Label column sm="3" className="form-label" style={{Color:"white"}}>
                           Email
                         </Form.Label>
                         <Col sm="9">
@@ -377,7 +381,7 @@ const ProfileScreen2 = (props) => {
             )}
           </div>
         </Col>
-        {/* <Col md={7}>
+        <Col md={7}>
           <div className="text-center">
             <h2>My Cards</h2>
             <LinkContainer to="/cards/add/new" style={{ marginBottom: '15px' }}>
@@ -433,7 +437,7 @@ const ProfileScreen2 = (props) => {
               </Table>
             )}
           </div>
-        </Col> */}
+        </Col>
       </Row>
     </>
   );

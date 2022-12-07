@@ -1,8 +1,12 @@
+
+// This is middleware which will verify the data coming in the form body
+
+
 const verifySchema = (req, res, next, schema) => {
     const options = {
-        abortEarly: false, // include all errors
-        allowUnknown: true, // ignore unknown props
-        stripUnknown: true, // remove unknown props
+        abortEarly: false,
+        allowUnknown: true,
+        stripUnknown: true,
     };
     const { error, value } = schema.validate(req.body, options);
     if(error) {

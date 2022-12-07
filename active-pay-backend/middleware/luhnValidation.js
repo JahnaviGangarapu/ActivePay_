@@ -1,3 +1,6 @@
+
+//this middleware is for validating the card entered by the user.
+
 const Luhn = require('luhn-js');
 
 const luhnValidation = async(req, res, next) => {
@@ -15,5 +18,3 @@ const luhnValidation = async(req, res, next) => {
 }
 
 module.exports = luhnValidation;
-
-

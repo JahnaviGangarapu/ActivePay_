@@ -1,3 +1,6 @@
+
+//this schema stores the user details like login email and its password
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

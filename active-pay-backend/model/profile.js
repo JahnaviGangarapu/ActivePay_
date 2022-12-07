@@ -20,10 +20,12 @@ const profileSchema = new Schema({
         type: String,
         deafult:"999999999"
     },
+    //coins: will store all the coins earned by this user
     coins: {
         type: Number,
         required: true
     },
+    //card: will store all the cards associated with this user, cards will be stored as array
     card:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Card'

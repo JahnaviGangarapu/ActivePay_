@@ -10,6 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.Frontbg{
+  background-image: url("/images/istockphoto-1206800961-170667a.jpg");
+}
 
 @font-face {
   font-family: 'Gilroy-Bold';
@@ -27,7 +30,18 @@ body {
 
 main {
   min-height: 55vh;
+  // background-image:linear-gradient(
+  //   rgba(0, 0, 0, 0.7),
+  //   rgba(0, 0, 0, 0.7)
+  // ),url("../src/Images/istockphoto-1206800961-170667a.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
+// .homebg{
+//   background-image: url("../src/Images/paymentprocessors.webp");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
 
 .sign-in:hover {
   background-color: #333940;

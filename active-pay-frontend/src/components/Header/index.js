@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { getRewardPoints } from "../../actions/rewardActions";
 import { listCards } from "../../actions/cardActions";
-import { payAmount } from "../../actions/paymentactions";
+import { payAmount } from "../../actions/paymnetActions";
 
 const Header = () => {
   const dispatch = useDispatch();
