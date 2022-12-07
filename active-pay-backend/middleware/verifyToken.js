@@ -1,3 +1,6 @@
+
+// middleware to authenticate the user, using the bearer token
+
 const jwt = require('jsonwebtoken');
 const User = require('../model/user.js');
 
@@ -38,25 +41,6 @@ const verifyToken = async (req, res, next) => {
     // req.userId = decodedToken.userId;
 
 }
-// return [
-//     // authenticate JWT token and attach decoded token to request as req.user
-//     jwt({ secret, algorithms: ['HS256'] }),
-
-//     // attach full user record to request object
-//     async (req, res, next) => {
-//         // get user with id from token 'sub' (subject) property
-//         const user = await User.findById(req.user.sub);
-
-//         // check if user exists
-//         if (!user) {
-//             return res.status(401).json({ message: "Unauthorized" });
-//         }
-
-//         // authentication successful
-//         req.user = user.get();
-//         next();
-//     }
-// ];
 
 
 module.exports = verifyToken;
