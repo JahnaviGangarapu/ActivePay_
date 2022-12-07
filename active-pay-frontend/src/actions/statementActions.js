@@ -1,7 +1,3 @@
-
-//below is the code for fetching the account statement from the database 
-
-
 import axios from '../axios';
 
 import {

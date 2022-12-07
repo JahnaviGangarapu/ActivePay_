@@ -1,8 +1,3 @@
-
-//User login or registration operaions are handled here.
-
-
-
 import axios from '../axios';
 
 import {
@@ -22,7 +17,7 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants';
 
-//LOGIN USER
+// @ LOGIN USER
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
@@ -51,14 +46,14 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-// LOGOUT USER
+// @ LOGOUT USER
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_LOGOUT });
 };
 
-// REGISTER USER
+// @ REGISTER USER
 export const register = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
@@ -88,7 +83,7 @@ export const register = (email, password) => async (dispatch) => {
   }
 };
 
-// FETCH CURRENT USER DETAILS
+// @ FETCH CURRENT USER DETAILS
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
@@ -115,7 +110,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-// UPDATE USER PROFILE
+// @ UPDATE USER PROFILE
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {

@@ -1,5 +1,4 @@
 import Axios from 'axios';
-//importing axios
 const axios = Axios.create({
   baseURL: `${
     process.env.NODE_ENV === 'development'
@@ -8,6 +7,8 @@ const axios = Axios.create({
   }`,
 });
 
-
+(function testing(){
+  console.log(process.env)
+})()
 
 export default axios;

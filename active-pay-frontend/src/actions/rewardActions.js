@@ -7,7 +7,7 @@ import {
   REWARD_POINTS_FAIL,
   REWARD_POINTS_REQUEST,
   REWARD_POINTS_SUCCESS,
-} from '../constants/rewardConstant';
+} from '../constants/rewardConstants';
 
 export const getRewardPoints = () => async (dispatch, getState) => {
   try {

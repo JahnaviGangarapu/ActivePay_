@@ -1,9 +1,4 @@
-
-//This component is the header of entire application where the header is deigned using HTML tags and javaScript logic
-
-
 import React, { useEffect } from 'react';
-// eslint-disable-next-line
 import { Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
@@ -11,10 +6,10 @@ import {
   Nav,
   Container,
   NavDropdown,
-  // eslint-disable-next-line
-  Image,
+
   NavLink,
 } from 'react-bootstrap';
+import SearchBox from '../SearchBox';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userActions';
@@ -43,7 +38,7 @@ const Header = () => {
   return (
     <header>
       <Navbar
-        //bg="lightblack"
+        // bg="dark"
         variant="dark"
         expand="lg"
         collapseOnSelect
@@ -55,13 +50,14 @@ const Header = () => {
             <Navbar.Brand>
               {/* <Image
                 style={{ width: '40%', height: 'auto' }}
-                src="../Images/digital-wallet-e-payment-logo-design-vector-28823812.jpg"
+                src="/images/cred-logo.png"
               /> */}
-              <p className="logo">ActivePay</p>
+              <p className='logo'>ActivePay</p>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className="ml-auto">
               {userInfo ? (
                 <>

@@ -1,7 +1,3 @@
-
-//This component is where the pagination of statements takes place, it divide the area and showcase [articular number of rows of statements per page
-
-
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';

@@ -69,7 +69,7 @@ const LoginScreen2 = (props) => {
           isValid,
           dirty,
         }) => (
-          <FormContainer >
+          <FormContainer>
             <h1>Sign In</h1>
             {show && error && (
               <AlertMessage variant="danger" onCloseHandler={onCloseHandler}>
@@ -79,7 +79,7 @@ const LoginScreen2 = (props) => {
             {loading && <Loader color={'#FFFFFF'} />}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="email">
-                <Form.Label className="form-label" style={{color:"white"}}>Email</Form.Label>
+                <Form.Label className="form-label" style={{Color:"white"}}>Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
@@ -96,7 +96,7 @@ const LoginScreen2 = (props) => {
                 )}
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label style={{color:"white"}}>Password</Form.Label>
+                <Form.Label style={{Color:"white"}}>Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
@@ -123,7 +123,7 @@ const LoginScreen2 = (props) => {
             </Form>
             <Row className="py-3">
               <Col>
-                <div className="normal-text" style={{color:"white"}}>
+                <div className="normal-text" style={{Color:"white"}}>
                   New Customer?{' '}
                   <Link
                     to={

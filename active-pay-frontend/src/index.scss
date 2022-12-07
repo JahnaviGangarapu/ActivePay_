@@ -10,14 +10,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-// .Frontbg{
-//   background-image: url("/Images/istockphoto-1206800961-170667a.jpg");
-// }
+.Frontbg{
+  background-image: url("/images/istockphoto-1206800961-170667a.jpg");
+}
 
-// @font-face {
-//   font-family: 'Gilroy-Bold';
-//   src: local('Gilroy-Bold'), url(./fonts/Gilroy-Bold.woff);
-// }
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: local('Gilroy-Bold'), url(./fonts/Gilroy-Bold.woff);
+}
 
 .form-label {
   font-weight: normal;
