@@ -1,4 +1,6 @@
 import Axios from 'axios';
+//using axios for fetchning api
+
 const axios = Axios.create({
   baseURL: `${
     process.env.NODE_ENV === 'development'
@@ -8,6 +10,8 @@ const axios = Axios.create({
 });
 
 (function testing(){
+
+  //testing
   console.log(process.env)
 })()
 
