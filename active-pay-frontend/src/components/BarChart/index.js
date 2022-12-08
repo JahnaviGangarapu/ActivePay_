@@ -2,7 +2,7 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const BarChart = (props) => {
-  const { labels, color, label, value } = props;
+  const { labels, color, label, value } = props;  // Barchart props
 
   console.log(props)
   const data = {
@@ -50,6 +50,6 @@ const BarChart = (props) => {
       )}
     </>
   );
-};
+};   //return statement with details to display
 
 export default BarChart;
