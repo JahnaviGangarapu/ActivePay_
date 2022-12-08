@@ -53,12 +53,7 @@ const Footer = () => {
 
                 <div className="col-xl-3 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
                   <h6 className="mt-55 mt-2 text-muted bold-text">
-                    <a
-                      href="https://github.com/arabhiar"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hover-none"
-                    >
+                    
                       <b>Anurag Nandre</b><br/>
                       <b>Sneha Govindarajan</b>
                     </a>
@@ -66,12 +61,7 @@ const Footer = () => {
                 </div>
                 <div className="col-xl-3 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
                   <h6 className="text-muted bold-text">
-                    <a
-                      href="https://github.com/ishuu7"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hover-none"
-                    >
+                    
                       <b>Jahnavi Gangarapu</b><br />
                       <b>Madhura Kurhadkar</b>
                     </a>
