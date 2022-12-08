@@ -7,7 +7,7 @@ import {
   REWARD_POINTS_FAIL,
   REWARD_POINTS_REQUEST,
   REWARD_POINTS_SUCCESS,
-} from '../constants/rewardConstant';
+} from '../constants/rewardConstants';
 
 const api_url = "http://localhost:8082";
 
@@ -27,8 +27,8 @@ export const getRewardPoints = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`${api_url}/api/rewards/coins`, config);
-    dispatch({ type: REWARD_POINTS_SUCCESS, payload: data.coinsCount });
+    const { data } = await axios.get('/api/rewards/coins', config);
+    dispatch({ type: REWARD_POINTS_SUCCESS, payload: data.coins });
   } catch (err) {
     dispatch({
       type: REWARD_POINTS_FAIL,

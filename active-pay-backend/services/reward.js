@@ -13,38 +13,34 @@ function randomValueHex (len) {
 }
 
 module.exports = {
-    getCoinsCount: async(req, res) => {
+    getCoinsCount: async(req, res, next) => {
         // getProfileAssociated
-        const profileAssociated = await Profile.findOne({
-            where: {
-                UserId: req.user.id
-            },
+        const userId = req.user._id;
+        const profileAssociated = await Profile.findById({
+                _id: userId
             //if profile is found ,get the coins associated to it
-            attributes: ['coins']
         })
         .catch((err) => {
             res.statusCode = 500;
             throw new Error(err);
         })
-        res.status(200).json({ coinsCount: profileAssociated.coins.toString() });
+        console.log(profileAssociated)
+        res.status(200).json({ coins: profileAssociated.coins.toString() });
     },
 
     addRewards: async(req, res) => {
         try {
             // getProfileAssociated
-            const profileAssociated = await Profile.findOne({
-                where: {
-                    UserId: req.user.id
-                },
-                attributes: ['id', 'email', 'authCode', 'UserId', 'name', 'phoneNumber', 'reminders', 'coins']
+            const profileAssociated = await Profile.findById({
+                    _id: req.user.id
             })
 
-            const duplicate = {...profileAssociated._doc};
+            const duplicate = {...profileAssociated};
             duplicate.coins = parseInt(profileAssociated.coins) - parseInt(req.body.coinsNeeded);
             // when user purchases a reward just generate a coupon code and share it to the user.
             const couponPromoCode = randomValueHex(4) + "-" + randomValueHex(4) + "-" + randomValueHex(4);
 
-            await Reward.create({
+            const reward_created=await Reward.create({
                 couponId: req.body.couponId,
                 companyName: req.body.companyName,
                 description: req.body.description,
@@ -53,11 +49,17 @@ module.exports = {
                 coinsNeeded: req.body.coinsNeeded,
                 ProfileId: profileAssociated.id
             })
+            // duplicate.reward=[...duplicate.reward,reward_created._id]
+            await profileAssociated.update({
+                _id: profileAssociated._id,
+                reward:[...profileAssociated.reward,reward_created._id],
+                coins:duplicate.coins
 
-            await profileAssociated.update(duplicate);
+            });
 
             res.status(200).json({ msg: "Reward Added Successfully !"});
         } catch(error) {
+            console.log(error)
             res.statusCode = 500;
             throw new Error(error);
         }
@@ -65,22 +67,26 @@ module.exports = {
     getAllRewards: async(req, res) => {
         try {
             // getProfileAssociated
-            const profileAssociated = await Profile.findOne({
-                where: {
-                    UserId: req.user.id
-                },
-                attributes: ['id']
+            const profileAssociated = await Profile.findById({
+                    _id: req.user.id
+                
             });
+            console.log(profileAssociated)
             // when user is eligible for rewards just show all the rewards user can purchase with the coins earned
-            const allRewards = await Reward.find({
-                where: {
-                    ProfileId: profileAssociated.id
-                },
-                attributes: ['id', 'couponId', 'companyName', 'description', 'imageUrl', 'promocode', 'coinsNeeded']
-            })
+            let allRewards=[]
+            for(const rewardId of profileAssociated.reward){
+                console.log(rewardId)
+                const reward_item=await Reward.findById({
+                    _id:rewardId.toString()
+                })
+                console.log(reward_item+"  80")
+                allRewards.push(reward_item)
+            }
+            console.log(allRewards+"  89")
             res.status(200).send(allRewards);
         }
         catch(error) {
+            console.log(error)
             res.statusCode = 500;
             throw new Error(error);
         }

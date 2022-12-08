@@ -1,7 +1,3 @@
-
-//This component is the footer of the application
-
-
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
@@ -52,7 +48,7 @@ const Footer = () => {
                       <i className="fab fa-instagram" aria-hidden="true"></i>
                     </span>{' '}
                   {/* </p> */}
-
+                  
                 </div>
 
                 <div className="col-xl-3 col-md-4 col-sm-4 col-auto order-1 align-self-end ">

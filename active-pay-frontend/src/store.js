@@ -10,6 +10,19 @@ import {
 } from './reducers/userReducers';
 
 import {
+  cardAddReducer,
+  cardListReducer,
+  cardDetailsReducer,
+} from './reducers/cardReducer';
+
+import {
+  statementDetailsReducer,
+  recentStatementsReducer,
+  smartStatementsByMonthReducer,
+} from './reducers/statementReducer';
+
+import { payReducer } from './reducers/paymentReducer';
+import {
   rewardPointsReducer,
   allCouponsReducer,
 } from './reducers/rewardReducer';
@@ -19,6 +32,13 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  cardAdd: cardAddReducer,
+  cardList: cardListReducer,
+  cardDetails: cardDetailsReducer,
+  statementDetails: statementDetailsReducer,
+  smartStatementsByMonth: smartStatementsByMonthReducer,
+  recentStatements: recentStatementsReducer,
+  pay: payReducer,
   rewardPoints: rewardPointsReducer,
   allCoupons: allCouponsReducer,
 });

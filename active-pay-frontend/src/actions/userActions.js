@@ -1,8 +1,3 @@
-
-//User login or registration operaions are handled here.
-
-
-
 import axios from '../axios';
 
 import {
@@ -22,9 +17,7 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants';
 
-const api_url = "http://localhost:8082";
-
-//LOGIN USER
+// @ LOGIN USER
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
@@ -36,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${api_url}/api/user/login`,
+      '/api/user/login',
       { email, password },
       config
     );
@@ -53,14 +46,14 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-// LOGOUT USER
+// @ LOGOUT USER
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_LOGOUT });
 };
 
-// REGISTER USER
+// @ REGISTER USER
 export const register = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
@@ -71,7 +64,7 @@ export const register = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${api_url}/api/user/signup`,
+      '/api/user/signup',
       { email, password },
       config
     );
@@ -90,7 +83,7 @@ export const register = (email, password) => async (dispatch) => {
   }
 };
 
-// FETCH CURRENT USER DETAILS
+// @ FETCH CURRENT USER DETAILS
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
@@ -104,7 +97,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`${api_url}/api/user/profile/`, config);
+    const { data } = await axios.get(`/api/user/${id}`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -117,7 +110,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-// UPDATE USER PROFILE
+// @ UPDATE USER PROFILE
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
@@ -134,7 +127,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.patch(`${api_url}/api/user/profile/`, user, config);
+    const { data } = await axios.patch('/api/user/profile', user, config);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (err) {
     dispatch({

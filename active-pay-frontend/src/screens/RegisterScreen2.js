@@ -10,8 +10,6 @@ import FormContainer from '../components/FormContainer';
 import AlertMessage from '../components/AlertMessage';
 import Loader from '../components/Loader';
 
-const api_url = "http://localhost:8082";
-
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
 // const phoneRegex = /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g
@@ -93,7 +91,7 @@ const RegisterScreen2 = (props) => {
             {loading && <Loader color={'#333940'} />}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="email">
-                <Form.Label className="form-label" style={{color:"white"}}>Email</Form.Label>
+                <Form.Label className="form-label" style={{Color:"white"}}>Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
@@ -110,7 +108,7 @@ const RegisterScreen2 = (props) => {
                 )}
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label style={{color:"white"}}>Password</Form.Label>
+                <Form.Label style={{Color:"white"}}>Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
@@ -128,7 +126,7 @@ const RegisterScreen2 = (props) => {
               </Form.Group>
 
               <Form.Group controlId="confirmPassword">
-                <Form.Label style={{color:"white"}}>Confirm Password</Form.Label>
+                <Form.Label style={{Color:"white"}}>Confirm Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="confirmPassword"
@@ -148,17 +146,17 @@ const RegisterScreen2 = (props) => {
               <Button
                 type="submit"
                 disabled={!(dirty && isValid)}
-                className={!(dirty && isValid) ? 'disabled-btn' : ''} style={{backgroundColor:"black"}}
+                className={!(dirty && isValid) ? 'disabled-btn' : ''} style ={{backgroundColor:"black"}}
               >
                 Register
               </Button>
             </Form>
             <Row className="py-3">
               <Col>
-                <div className="normal-text" style={{color:"white"}}>
+                <div className="normal-text" style={{Color:"white"}}>
                   Already have an account?{' '}
                   <Link
-                    to={redirect ? `${api_url}/login?redirect=${redirect}` : '/login'}
+                    to={redirect ? `/login?redirect=${redirect}` : '/login'}
                   >
                     Sign In
                   </Link>

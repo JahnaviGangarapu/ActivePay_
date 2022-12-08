@@ -7,12 +7,10 @@ import Loader from 'react-spinners/PuffLoader';
 import { getCardById } from '../actions/cardActions';
 import { getRecentStatements } from '../actions/statementActions';
 import AlertMessage from '../components/AlertMessage';
+import CreditCard2 from '../components/CreditCard2';
 import ModalForm from '../components/ModalForm';
 import Dropdown from '../components/Dropdown';
 import TransactionTable from '../components/TransactionTable';
-
-const api_url = "http://localhost:8082";
-
 
 const getMonthsArr = (year) => {
   let d = new Date();
@@ -62,7 +60,7 @@ const CardScreen = (props) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push(`${api_url}/login`);
+      history.push('/login');
     } else {
       if (!card.cardNumber) {
         dispatch(getCardById(cardId));
@@ -115,7 +113,7 @@ const CardScreen = (props) => {
               <Card.Body>
                 <Card.Title> Outstanding Amount </Card.Title>
                 <Card.Text className="responsive-text">
-                  {`₹ ${parseAmount(card.outstandingAmount)}`}
+                  {`$ ${parseAmount(card.outstandingAmount)}`}
                 </Card.Text>
                 <Button
                   className="btn btn-outline-success"
@@ -159,6 +157,7 @@ const CardScreen = (props) => {
                     handleChange={(e) => setYear(e.target.value)}
                     label="Year"
                     data={getYearsArr()}
+                    style={{ backgroundColor: 'beige' }}
                   />
                 </Col>
                 <Col md={3}>
@@ -167,18 +166,20 @@ const CardScreen = (props) => {
                     handleChange={(e) => setMonth(e.target.value)}
                     label="Month"
                     data={getMonthsArr(year)}
+                    variant="primary"
                   />
                 </Col>
 
                 <Col md={3}>
                   <LinkContainer
-                    to={`${api_url}/cards/${cardId}/statements/${parseInt(
+                    to={`/cards/${cardId}/statements/${parseInt(
                       year
                     )}/${parseInt(month)}`}
                   >
                     <Button
-                      className="btn btn-outline-info"
+                      className="btn btn-light"
                       disabled={!month || !year ? true : false}
+                      style={{ backgroundColor: 'beige' }}
                     >
                       Get
                     </Button>
@@ -186,13 +187,14 @@ const CardScreen = (props) => {
                 </Col>
                 <Col md={3}>
                   <LinkContainer
-                    to={`${api_url}/cards/${cardId}/smartstatements/${parseInt(
+                    to={`/cards/${cardId}/smartstatements/${parseInt(
                       year
                     )}/${parseInt(month)}`}
                   >
                     <Button
-                      className="btn btn-outline-info"
+                      className="btn btn-light"
                       disabled={!month || !year ? true : false}
+                      
                     >
                       Smart
                     </Button>

@@ -1,7 +1,3 @@
-
-//Here the all transactions carried out will be fetched from db and displayed in tabular format with details like date-time,
-// day, month, year, vendor and the amount spent. The is 12 hour clock, and transactions can be sorted ascending or descending order 
-
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
@@ -57,7 +53,7 @@ const TransactionTable = (props) => {
               <th>Vendor</th>
               <th>Category</th>
               <th>Date</th>
-              <th>Outstanding Amount(₹)</th>
+              <th>Outstanding Amount($)</th>
             </tr>
           </thead>
           <tbody>

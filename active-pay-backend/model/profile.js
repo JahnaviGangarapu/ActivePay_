@@ -22,13 +22,17 @@ const profileSchema = new Schema({
     },
     //coins: will store all the coins earned by this user
     coins: {
-        type: Schema.Types.Decimal128,
+        type: Number,
         required: true
     },
     //card: will store all the cards associated with this user, cards will be stored as array
     card:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Card'
+    }],
+    reward:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Reward'
     }]
 })
 module.exports = mongoose.model('Profile', profileSchema);

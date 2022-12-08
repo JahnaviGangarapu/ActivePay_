@@ -1,6 +1,3 @@
-// here are the constants related to getting the account statements functionality use through out the redux front end of the project
-
-
 export const STATEMENT_BY_DATE_REQUEST = 'STATEMENT_BY_DATE_REQUEST'
 export const STATEMENT_BY_DATE_SUCCESS = 'STATEMENT_BY_DATE_SUCCESS'
 export const STATEMENT_BY_DATE_FAIL = 'STATEMENT_BY_DATE_FAIL'
