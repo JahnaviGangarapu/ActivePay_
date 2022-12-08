@@ -35,6 +35,11 @@ const StatementScreen = (props) => {
     page,
   } = statementDetails;
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -59,6 +64,11 @@ const StatementScreen = (props) => {
   const onCloseHandler = () => {
     setShow(false);
   };
+
+    /**
+ * this helps to view states and displays the transaction details
+ * row-col alignment
+ */
 
   return (
     <>

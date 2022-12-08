@@ -68,6 +68,11 @@ const SmartStatementScreen = (props) => {
     colorVendorCount.current = getRandomColor(stat.vendorsCount.labels.length);
   }
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -88,6 +93,11 @@ const SmartStatementScreen = (props) => {
     setShow(false);
   };
 
+    /**
+ * this helps to smart display and displays the spending UI
+ * validation for the form 
+ * row-col alignment
+ */
   return (
     <>
       <h2

@@ -34,7 +34,11 @@ const ProfileScreen = (props) => {
 
   const loadingCards = null;
   const errorCards = null;
-
+ /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -61,6 +65,13 @@ const ProfileScreen = (props) => {
       dispatch(updateUserProfile({ name }));
     }
   };
+
+  /**
+ * this helps to display the profile and displays the profile 
+ * Image tag is used to align image tags
+ * form, form.group, form.label, formik is used for form alignment
+ * row-col alignment
+ */
 
   return (
     <>

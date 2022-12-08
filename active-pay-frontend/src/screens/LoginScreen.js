@@ -8,6 +8,7 @@ import FormContainer from '../components/FormContainer';
 import AlertMessage from '../components/AlertMessage';
 import Loader from '../components/Loader';
 
+//functional component of LoginScreen
 const LoginScreen = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +23,7 @@ const LoginScreen = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+//useEffect is used to do render the components
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
@@ -44,7 +46,11 @@ const LoginScreen = (props) => {
   const onCloseHandler = () => {
     setShow(false);
   };
-
+/**
+ * this helps to display the card and displays the amount inside the card
+ * form, form.group, form.label is used for form alignment
+ * row-col alignment
+ */
   return (
     <FormContainer>
       <h1>Sign In</h1>

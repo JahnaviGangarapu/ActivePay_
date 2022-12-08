@@ -28,6 +28,11 @@ const RegisterScreen = (props) => {
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
@@ -71,6 +76,12 @@ const RegisterScreen = (props) => {
     setShow(false);
   };
 
+  /**
+ * this helps to register and displays the user profile
+ * form, form.group, form.label is used for form alignment
+ * validation for the form 
+ * row-col alignment
+ */
   return (
     <FormContainer>
       <h1>Sign Up</h1>

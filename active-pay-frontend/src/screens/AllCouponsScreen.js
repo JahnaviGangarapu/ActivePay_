@@ -7,6 +7,10 @@ import { getAllCoupons, getRewardPoints } from '../actions/rewardActions';
 import Loader from '../components/Loader';
 import AlertMessage from '../components/AlertMessage';
 
+
+/**
+ * Ffunctional components for AllCouponsScreen
+ */
 const AllCouponsScreen = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
@@ -19,6 +23,7 @@ const AllCouponsScreen = (props) => {
   const allCoupons = useSelector((state) => state.allCoupons);
   const { coupons, loading, error } = allCoupons;
 
+  //useEffect is used to dispatch getRewardPoints and getAllCoupons
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -32,7 +37,10 @@ const AllCouponsScreen = (props) => {
   const onCloseHandler = () => {
     setShow(false);
   };
-
+/**
+ * this helps to list the coupons which we have got 
+ * used row-col to align the coupons
+ */
   return (
     <>
       {show && error && (

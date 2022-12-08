@@ -24,7 +24,7 @@ const initialValues = {
   email: '',
   password: '',
 };
-
+//functional component for LoginScreen2
 const LoginScreen2 = (props) => {
   const [show, setShow] = useState(false);
 
@@ -36,6 +36,10 @@ const LoginScreen2 = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  /**
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
@@ -51,7 +55,11 @@ const LoginScreen2 = (props) => {
   const onCloseHandler = () => {
     setShow(false);
   };
-
+/**
+ * this helps to display the card and displays the amount inside the card
+ * form, form.group, form.label, formik is used for form alignment
+ * row-col alignment
+ */
   return (
     <>
       <Formik

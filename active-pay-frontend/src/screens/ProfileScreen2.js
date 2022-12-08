@@ -72,6 +72,11 @@ const ProfileScreen2 = (props) => {
   const cardList = useSelector((state) => state.cardList);
   const { cards, error: errorCards, loading: loadingCards } = cardList;
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -144,7 +149,11 @@ const ProfileScreen2 = (props) => {
   const onCloseHandler = () => {
     setShow(false);
   };
-
+/**
+ * this helps to display the profile and displays the profile and update them
+ * form, form.group, form.label is used for form alignment
+ * row-col alignment
+ */
   return (
     <>
       {show && error && (

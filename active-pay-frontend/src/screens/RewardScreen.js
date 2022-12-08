@@ -17,6 +17,11 @@ const RewardScreen = (props) => {
   const rewardPoints = useSelector((state) => state.rewardPoints);
   const { coins, loading } = rewardPoints;
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -25,6 +30,12 @@ const RewardScreen = (props) => {
     }
   }, [userInfo, history, dispatch]);
 
+    /**
+ * this helps to reward and displays the rewards
+ * form, form.group, form.label is used for form alignment
+ * validation for the form 
+ * row-col alignment
+ */
   return (
     <>
       <h2>Buy Coupons</h2>

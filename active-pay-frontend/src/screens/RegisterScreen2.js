@@ -49,6 +49,11 @@ const RegisterScreen2 = (props) => {
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
 
+  /**
+  * useEffect is used to render the component
+   * dispatch is used for creating actions
+   * history is track the record
+   */
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
@@ -64,6 +69,12 @@ const RegisterScreen2 = (props) => {
     setShow(false);
   };
 
+    /**
+ * this helps to register and displays the user profile
+ * form, form.group, form.label is used for form alignment
+ * validation for the form 
+ * row-col alignment
+ */
   return (
     <>
       <Formik

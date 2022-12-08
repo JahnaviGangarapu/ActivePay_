@@ -8,6 +8,8 @@ import { CARD_ADD_RESET } from '../constants/cardConstants';
 import Loader from '../components/Loader';
 import AlertMessage from '../components/AlertMessage';
 
+
+//initial state for card
 const initialState = {
   cardNumber: '#### #### #### ####',
   cardHolder: 'FULL NAME',
@@ -17,6 +19,9 @@ const initialState = {
   isCardFlipped: false,
 };
 
+/**
+ * Functional component of AddCardScreen
+ */
 const AddCardScreen = (props) => {
   const [state, setState] = useState(initialState);
   const [authCode, setAuthCode] = useState('');
@@ -32,6 +37,8 @@ const AddCardScreen = (props) => {
   const cardAdd = useSelector((state) => state.cardAdd);
   const { success, loading, error } = cardAdd;
 
+
+  //useEffect is used to dispatch cards
   useEffect(() => {
     if (success) {
       dispatch({ type: CARD_ADD_RESET });
@@ -116,7 +123,10 @@ const AddCardScreen = (props) => {
   const onCloseHandler = () => {
     setShowAlert(false);
   };
-
+/**
+ * Done for adding cards
+ * It will go to the next component for the further process
+ */
   return (
     <>
       {loading ? (

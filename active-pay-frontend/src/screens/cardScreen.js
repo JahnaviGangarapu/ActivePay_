@@ -12,6 +12,7 @@ import ModalForm from '../components/ModalForm';
 import Dropdown from '../components/Dropdown';
 import TransactionTable from '../components/TransactionTable';
 
+
 const getMonthsArr = (year) => {
   let d = new Date();
   let monthsArr = [];
@@ -32,12 +33,14 @@ const getMonthsArr = (year) => {
   return monthsArr;
 };
 
+//get years array for the card
 const getYearsArr = () => {
   const currentYear = new Date().getFullYear();
   const yearsArr = Array.from({ length: 20 }, (_x, i) => currentYear - i);
   return yearsArr;
 };
 
+//functional component of CardScreen
 const CardScreen = (props) => {
   const { match, history } = props;
 
@@ -58,6 +61,9 @@ const CardScreen = (props) => {
   const cardDetails = useSelector((state) => state.cardDetails);
   const { card, error, loading } = cardDetails;
 
+  /**
+  useEffect is used to dispatch getCardById and getRecentStatements
+  */
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -70,6 +76,7 @@ const CardScreen = (props) => {
     }
   }, [userInfo, history, cardId, dispatch, card]);
 
+  //parsing the amount
   const parseAmount = (amount) => {
     if (amount || amount === 0) {
       let temp = amount.toString();
@@ -88,7 +95,12 @@ const CardScreen = (props) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+/**
+ * this helps to display the card and displays the amount inside the card
+ * card, card.body is used for alignment
+ * Modal is used for payment 
+ * row-col alignment
+ */
   return (
     <>
       {loading ? (
