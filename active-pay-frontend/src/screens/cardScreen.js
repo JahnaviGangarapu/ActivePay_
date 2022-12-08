@@ -113,7 +113,7 @@ const CardScreen = (props) => {
               <Card.Body>
                 <Card.Title> Outstanding Amount </Card.Title>
                 <Card.Text className="responsive-text">
-                  {`₹ ${parseAmount(card.outstandingAmount)}`}
+                  {`$ ${parseAmount(card.outstandingAmount)}`}
                 </Card.Text>
                 <Button
                   className="btn btn-outline-success"
@@ -157,6 +157,7 @@ const CardScreen = (props) => {
                     handleChange={(e) => setYear(e.target.value)}
                     label="Year"
                     data={getYearsArr()}
+                    style={{ backgroundColor: 'beige' }}
                   />
                 </Col>
                 <Col md={3}>
@@ -165,6 +166,7 @@ const CardScreen = (props) => {
                     handleChange={(e) => setMonth(e.target.value)}
                     label="Month"
                     data={getMonthsArr(year)}
+                    variant="primary"
                   />
                 </Col>
 
@@ -175,8 +177,9 @@ const CardScreen = (props) => {
                     )}/${parseInt(month)}`}
                   >
                     <Button
-                      className="btn btn-outline-info"
+                      className="btn btn-light"
                       disabled={!month || !year ? true : false}
+                      style={{ backgroundColor: 'beige' }}
                     >
                       Get
                     </Button>
@@ -189,8 +192,9 @@ const CardScreen = (props) => {
                     )}/${parseInt(month)}`}
                   >
                     <Button
-                      className="btn btn-outline-info"
+                      className="btn btn-light"
                       disabled={!month || !year ? true : false}
+                      
                     >
                       Smart
                     </Button>

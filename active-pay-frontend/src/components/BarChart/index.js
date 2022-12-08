@@ -4,13 +4,14 @@ import { Bar } from 'react-chartjs-2';
 const BarChart = (props) => {
   const { labels, color, label, value } = props;
 
+  console.log(props)
   const data = {
     labels: labels,
     datasets: [
       {
         label: label,
         data: value,
-        backgroundColor: color.background,
+        backgroundColor: "white",
         borderColor: color.border,
         borderWidth: 1,
       },
@@ -26,6 +27,7 @@ const BarChart = (props) => {
               fontSize: '1rem',
               fontWeight: '400',
               marginTop: '1.5rem',
+              color: "white",
             }}
           >
             No data available to show.

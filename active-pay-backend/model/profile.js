@@ -29,6 +29,10 @@ const profileSchema = new Schema({
     card:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Card'
+    }],
+    reward:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Reward'
     }]
 })
 module.exports = mongoose.model('Profile', profileSchema);

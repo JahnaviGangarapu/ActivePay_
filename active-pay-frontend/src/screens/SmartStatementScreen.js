@@ -10,6 +10,8 @@ import Loader from '../components/Loader';
 import { Row, Col } from 'react-bootstrap';
 import { SMART_STATEMENT_BY_MONTH_RESET } from '../constants/statementConstants';
 import AlertMessage from '../components/AlertMessage';
+// eslint-disable-next-line
+import { withRouter } from 'react-router-dom';
 
 const getRandomColor = (count) => {
   const transBackground = '0.2';
@@ -106,7 +108,7 @@ const SmartStatementScreen = (props) => {
           <div>
             <Row>
               <Col md={6}>
-                <div className="text-center">
+                <div className="text-center" style={{backgroundColor : 'white'}}>
                   <p
                     style={{
                       fontSize: '1.3rem',
@@ -160,7 +162,7 @@ const SmartStatementScreen = (props) => {
                 </div>
               </Col>
               <Col md={6}>
-                <div className="text-center">
+                <div className="text-center" style={{backgroundColor : 'white'}}>
                   <p
                     style={{
                       fontSize: '1.3rem',
@@ -216,7 +218,7 @@ const SmartStatementScreen = (props) => {
             </Row>
             <Row>
               <Col md={6}>
-                <div className="text-center">
+                <div className="text-center" style={{backgroundColor : 'white'}}>
                   <p
                     style={{
                       fontSize: '1.3rem',
@@ -271,7 +273,7 @@ const SmartStatementScreen = (props) => {
                 </div>
               </Col>
               <Col md={6}>
-                <div className="text-center">
+                <div className="text-center" style={{backgroundColor : 'white'}}>
                   <p
                     style={{
                       fontSize: '1.3rem',

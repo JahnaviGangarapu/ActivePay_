@@ -10,7 +10,7 @@ export const rewards = [
     {
       id: 2,
       company: 'Ray Ban',
-      description: 'Get 25% discount upto $49 for buying spectacles over ₹2500.',
+      description: 'Get 25% discount upto $49 for buying spectacles over $250.',
       coin: 150,
       url: '/images/RayBan.png',
     },
