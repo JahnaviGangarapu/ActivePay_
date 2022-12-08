@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from '../axios';   // importing axios
 
 import {
   SMART_STATEMENT_BY_MONTH_FAIL,
@@ -8,8 +8,10 @@ import {
   STATEMENT_BY_DATE_REQUEST,
   STATEMENT_BY_DATE_SUCCESS,
   STATEMENT_RECENT_5_FAIL,
+
   STATEMENT_RECENT_5_REQUEST,
   STATEMENT_RECENT_5_SUCCESS,
+
 } from '../constants/statementConstants';
 
 export const getStatementsByMonth = (
@@ -45,7 +47,7 @@ export const getStatementsByMonth = (
           : err.message,
     });
   }
-};
+};   // get statements by every month and year in both smart statment format and normal format
 
 export const getRecentStatements = (cardNo, count = 3) => async (
   dispatch,
@@ -79,7 +81,7 @@ export const getRecentStatements = (cardNo, count = 3) => async (
           : err.message,
     });
   }
-};
+};  // getting the recent statments
 
 export const getSmartStatementsByMonth = (cardNo, year, month) => async (
   dispatch,
@@ -112,4 +114,4 @@ export const getSmartStatementsByMonth = (cardNo, year, month) => async (
           : err.message,
     });
   }
-};
+};  //fetchning smart statements in the form of pie chart and bar chart 
